@@ -1891,5 +1891,10 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promis
 self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).catch(()=>cached)));});
     `;
     const blob = new Blob([swCode], { type: 'application/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    navigator.serviceWorker.registe
+        const swUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(swUrl);
+        });
+          }
+          </script>
+          </body>
+          </html>
