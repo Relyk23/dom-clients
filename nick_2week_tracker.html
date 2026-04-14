@@ -25,7 +25,7 @@
   ctx.fillStyle = '#CC0000';
   ctx.font = 'bold 52px Arial';
   ctx.textAlign = 'center';
-  ctx.fillText('DOM', 96, 90);
+  ctx.fillText('D>M', 96, 90);
   ctx.fillStyle = '#666';
   ctx.font = '20px Arial';
   ctx.fillText('TRAINING', 96, 120);
@@ -1500,7 +1500,10 @@ function openWorkout(day) {
       let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div></div>`;
       if (ex.pr) headerHTML += `<span class="pr-badge">PR Zone</span>`;
 
-      let setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
+              const isSimple = /warm|recovery/i.test(section.label);
+        let setsHTML = '';
+                if (!isSimple) {
+                          setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
       for (let s = 0; s < ex.sets; s++) {
         const savedLbs = loadData(day.day, eIdx, s, 'lbs');
         const savedReps = loadData(day.day, eIdx, s, 'reps');
@@ -1512,6 +1515,11 @@ function openWorkout(day) {
           <button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-${s}" onclick="toggleSet(${day.day},${eIdx},${s},${totalSets})">✓</button>
         </div>`;
       }
+    }
+            if (isSimple) {
+                      const savedDone = loadData(day.day, eIdx, 0, 'done') === '1';
+                                headerHTML += `<button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-0" onclick="toggleSet(${day.day},${eIdx},0,${totalSets})">✓</button>`;
+                                        }
 
       exCard.innerHTML = `<div class="ex-header">${headerHTML}</div>${setsHTML}`;
       scroll.appendChild(exCard);
