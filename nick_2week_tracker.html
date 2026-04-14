@@ -11,27 +11,21 @@
 <meta name="apple-mobile-web-app-title" content="DOM Training">
 <meta name="theme-color" content="#080808">
 <link rel="manifest" href="manifest.json">
-<!-- iOS icon (generated inline via canvas on load) -->
 <link rel="apple-touch-icon" id="apple-touch-icon" href="icon-192.png">
 <script>
-// Generate app icon as data URL and inject into apple-touch-icon link
 (function() {
   const c = document.createElement('canvas');
   c.width = 192; c.height = 192;
   const ctx = c.getContext('2d');
-  // Background
   ctx.fillStyle = '#080808';
   ctx.roundRect(0, 0, 192, 192, 32);
   ctx.fill();
-  // Red accent bar
   ctx.fillStyle = '#CC0000';
   ctx.fillRect(0, 148, 192, 6);
-  // Text — DOM
   ctx.fillStyle = '#CC0000';
   ctx.font = 'bold 52px Arial';
   ctx.textAlign = 'center';
   ctx.fillText('DOM', 96, 90);
-  // Subtext
   ctx.fillStyle = '#666';
   ctx.font = '20px Arial';
   ctx.fillText('TRAINING', 96, 120);
@@ -134,14 +128,22 @@
   .nav-btn.active .nav-label { color: var(--red); }
 
   /* ── WEEK TABS ── */
-  .week-tabs {
-    display: flex;
-    gap: 8px;
+  .week-tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     margin-bottom: 4px;
   }
+  .week-tabs-scroll::-webkit-scrollbar { display: none; }
+  .week-tabs {
+    display: flex;
+    gap: 6px;
+    width: max-content;
+    padding-bottom: 2px;
+  }
   .week-tab {
-    flex: 1;
-    padding: 8px;
+    flex-shrink: 0;
+    padding: 8px 12px;
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -151,12 +153,21 @@
     cursor: pointer;
     text-align: center;
     transition: all 0.15s;
+    white-space: nowrap;
   }
   .week-tab.active {
     background: var(--red-dim);
     border-color: var(--red);
     color: var(--text);
   }
+  .week-tab .week-block-badge {
+    display: block;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+  .week-tab.active .week-block-badge { color: var(--red); opacity: 0.8; }
 
   /* ── DAY CARD ── */
   .day-card {
@@ -302,7 +313,6 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-        flex-shrink: 0;
   }
   .ex-header {
     display: flex;
@@ -490,15 +500,6 @@
   .rec-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
   .rec-text strong { color: var(--text); font-weight: 500; }
 
-  /* REST DAY */
-  .rest-day-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 16px;
-    text-align: center;
-  }
-
   /* PROGRESS SCREEN */
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-card {
@@ -534,6 +535,81 @@
   .day-dot.done { background: var(--green); }
   .day-dot.rest { background: var(--surface2); border: 1px solid var(--border); }
   .day-dot.today { background: var(--red); }
+
+  /* PROGRESS DETAIL LINK CARDS */
+  .detail-link-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    text-decoration: none;
+  }
+  .detail-link-card:active { border-color: var(--border2); }
+  .detail-link-left {}
+  .detail-link-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); font-family: 'Bebas Neue', sans-serif; margin-bottom: 3px; }
+  .detail-link-title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .detail-link-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .detail-link-arrow { color: var(--red); font-size: 18px; }
+
+  /* DETAIL SCREENS (Supplements, Coaching Notes) */
+  .detail-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    padding: 4px 0 2px;
+  }
+  .detail-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .detail-card + .detail-card { margin-top: 0; }
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .detail-item:first-child { padding-top: 0; }
+  .detail-item-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .detail-item-dose { font-size: 12px; color: var(--red); font-family: 'DM Mono', monospace; margin-top: 1px; }
+  .detail-item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 2px; }
+  .coaching-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .coaching-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .coaching-item:first-child { padding-top: 0; }
+  .coaching-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--red);
+    line-height: 1;
+    min-width: 24px;
+    flex-shrink: 0;
+  }
+  .coaching-content {}
+  .coaching-rule { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .coaching-detail { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .disclaimer-text {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.5;
+    padding: 4px 8px;
+  }
 
   /* PROFILE SCREEN */
   .profile-header {
@@ -577,6 +653,17 @@
   .info-row:last-child { border-bottom: none; }
   .info-key { font-size: 13px; color: var(--text-muted); }
   .info-val { font-size: 13px; font-weight: 500; color: var(--text); }
+  /* Experience row — stacked layout for long value */
+  .info-row-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row-stacked:last-child { border-bottom: none; }
+  .info-key-stacked { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+  .info-val-stacked { font-size: 14px; font-weight: 500; color: var(--text); }
 
   /* COACH NOTE */
   .coach-note {
@@ -682,14 +769,13 @@
     <div class="header-row">
       <div>
         <div class="header-title">Nick's Program</div>
-        <div class="header-sub">2-Week Test Block · Muscle & General Fitness</div>
+        <div class="header-sub">8-Week Program · Muscle & General Fitness</div>
       </div>
     </div>
   </div>
   <div class="scroll-body" id="schedule-scroll">
-    <div class="week-tabs">
-      <button class="week-tab active" id="tab-w1" onclick="switchWeek(1)">Week 1</button>
-      <button class="week-tab" id="tab-w2" onclick="switchWeek(2)">Week 2</button>
+    <div class="week-tabs-scroll">
+      <div class="week-tabs" id="week-tabs-container"></div>
     </div>
     <div id="day-list"></div>
   </div>
@@ -719,8 +805,8 @@
     <button class="back-btn" onclick="goBack()">← Schedule</button>
     <div class="workout-brand">Discipline Over Motivation</div>
     <div class="workout-title-row">
-      <div class="workout-big-title" id="workout-title">Upper Body Push</div>
-      <div class="day-chip" id="workout-chip">Day 1</div>
+      <div class="workout-big-title" id="workout-title">Upper Body</div>
+      <div class="day-chip" id="workout-chip">Week 1 · Mon</div>
     </div>
     <div class="workout-meta-row" id="workout-meta">Nick Garberina · Gold's Gym</div>
   </div>
@@ -738,7 +824,7 @@
     <div class="header-row">
       <div>
         <div class="header-title">Progress</div>
-        <div class="header-sub">2-Week Test Block</div>
+        <div class="header-sub">8-Week Program</div>
       </div>
     </div>
   </div>
@@ -776,31 +862,6 @@
     </div>
   </div>
   <div class="scroll-body" id="profile-scroll">
-    <div class="profile-header">
-      <div class="avatar">NG</div>
-      <div>
-        <div class="profile-name">Nick Garberina</div>
-        <div class="profile-meta">25 · Male · Gold's Gym</div>
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-row"><span class="info-key">Height</span><span class="info-val">5'6"</span></div>
-      <div class="info-row"><span class="info-key">Weight</span><span class="info-val">140 lbs</span></div>
-      <div class="info-row"><span class="info-key">Goal</span><span class="info-val">Muscle Gain & General Fitness</span></div>
-      <div class="info-row"><span class="info-key">Experience</span><span class="info-val">Advanced Knowledge / Intermediate Strength</span></div>
-      <div class="info-row"><span class="info-key">Plan Duration</span><span class="info-val">2 Months (Test: 2 Weeks)</span></div>
-      <div class="info-row"><span class="info-key">Sleep</span><span class="info-val">Good · 8–9 hrs/night</span></div>
-      <div class="info-row"><span class="info-key">Stress</span><span class="info-val">Moderate–High</span></div>
-    </div>
-    <div class="coach-note">
-      <div class="coach-label">Coach Note</div>
-      <div class="coach-text">Nick — given your concussion history, upper body loads are kept intentionally lighter for the first 2 weeks. Legs are full intensity. All sets should be done with excellent form before adding weight. Recovery portions at the end of each session are non-negotiable.</div>
-    </div>
-    <div class="info-card">
-      <div class="info-row"><span class="info-key">Injuries / Limitations</span><span class="info-val">Post-concussion (cleared). Lighter upper body.</span></div>
-      <div class="info-row"><span class="info-key">Recovery Tools</span><span class="info-val">Foam rolling, stretching</span></div>
-      <div class="info-row"><span class="info-key">Rest Day</span><span class="info-val">Sunday (mandatory)</span></div>
-    </div>
   </div>
   <div class="bottom-nav">
     <button class="nav-btn" onclick="showTab('schedule')">
@@ -866,9 +927,6 @@
       <option value="Very High">Very High</option>
     </select>
 
-    <div class="settings-field-label">Recovery Tools</div>
-    <input class="settings-input" id="set-recovery" type="text" placeholder="e.g. foam rolling, stretching" oninput="saveProfileField('recovery',this.value)">
-
     <div class="settings-divider"></div>
     <div class="settings-section-title">Locked by Coach</div>
 
@@ -889,308 +947,323 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     SCREEN 6: SUPPLEMENT RECOMMENDATIONS
+══════════════════════════════════════════ -->
+<div class="screen" id="screen-supplements">
+  <div class="safe-top"></div>
+  <div class="app-header">
+    <div class="header-brand">Discipline Over Motivation</div>
+    <div class="header-row">
+      <div>
+        <div class="header-title">Supplements</div>
+        <div class="header-sub">Evidence-based recommendations</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-body">
+    <button class="back-btn" onclick="showTab('progress')" style="margin-bottom:0;">← Progress</button>
+    <div class="coach-note">
+      <div class="coach-label">From Your Coach</div>
+      <div class="coach-text">These are the basics — nothing unnecessary. Always check with your doctor before adding anything new, especially given your health history.</div>
+    </div>
+    <div class="detail-section-title">DAILY STACK</div>
+    <div class="detail-card">
+      <div class="detail-item">
+        <div class="detail-item-name">Creatine Monohydrate</div>
+        <div class="detail-item-dose">5g daily — any time of day</div>
+        <div class="detail-item-desc">The most proven supplement in existence. More strength, more muscle over time. Safe long-term. Start Day 1 and don't stop. No loading phase needed.</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-item-name">Vitamin D3 + K2</div>
+        <div class="detail-item-dose">2,000–5,000 IU D3 — with a meal</div>
+        <div class="detail-item-desc">Most people are low without knowing it. Affects muscle function, mood, immune health, and recovery. Take with K2 for proper calcium absorption.</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-item-name">Magnesium Glycinate</div>
+        <div class="detail-item-dose">300–400mg — before bed</div>
+        <div class="detail-item-desc">Better sleep, less soreness. Particularly helpful given elevated stress levels. Glycinate form is easier on the stomach than other forms.</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-item-name">Fish Oil (Omega-3)</div>
+        <div class="detail-item-dose">2–3g EPA+DHA daily — with food</div>
+        <div class="detail-item-desc">Cuts systemic inflammation between sessions. Your joints will feel better and you'll recover faster. Look for EPA+DHA on the label, not just "fish oil."</div>
+      </div>
+    </div>
+    <div class="detail-section-title">AS NEEDED</div>
+    <div class="detail-card">
+      <div class="detail-item">
+        <div class="detail-item-name">Whey Protein</div>
+        <div class="detail-item-dose">20–40g post-workout</div>
+        <div class="detail-item-desc">Only if you're not hitting roughly 0.8–1g of protein per pound of bodyweight through food. Food always comes first. Use as a gap-filler, not a crutch.</div>
+      </div>
+    </div>
+    <div class="disclaimer-text">Consult a physician before starting any new supplement, particularly given your health history.</div>
+    <div class="safe-bottom"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 7: COACHING NOTES & KEY REMINDERS
+══════════════════════════════════════════ -->
+<div class="screen" id="screen-coaching">
+  <div class="safe-top"></div>
+  <div class="app-header">
+    <div class="header-brand">Discipline Over Motivation</div>
+    <div class="header-row">
+      <div>
+        <div class="header-title">Coaching Notes</div>
+        <div class="header-sub">Key reminders from your coach</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-body">
+    <button class="back-btn" onclick="showTab('progress')" style="margin-bottom:0;">← Progress</button>
+    <div class="coach-note">
+      <div class="coach-label">From Your Coach</div>
+      <div class="coach-text">Stick to the plan. Track the lifts. Prioritize recovery. The results will follow.</div>
+    </div>
+    <div class="detail-section-title">NON-NEGOTIABLES</div>
+    <div class="detail-card">
+      <div class="coaching-item">
+        <div class="coaching-num">1</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">No barbell bench — ever</div>
+          <div class="coaching-detail">All horizontal chest pressing is DB-only. This is a permanent programming decision, not a temporary modification. DBs allow natural wrist and elbow tracking that protects you.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">2</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Neck tension check-in before every upper session</div>
+          <div class="coaching-detail">Rate your neck stiffness 1–10 before every Monday and Friday. If it hits 6 or above, drop upper body weights by 20% and skip any overhead pressing. Never train through neck pain.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">3</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Both active recovery days are mandatory</div>
+          <div class="coaching-detail">Tuesday and Saturday are not optional rest days — they're part of the program. With moderate-to-high stress and 3 hard lifting days plus a full body day, these sessions are how training becomes muscle.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">4</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Compound first, isolation second</div>
+          <div class="coaching-detail">Perform primary compound movements while you're freshest. Isolation work and accessories are finishers — never do them first.</div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-section-title">TRAINING PRINCIPLES</div>
+    <div class="detail-card">
+      <div class="coaching-item">
+        <div class="coaching-num">5</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Add weight over time</div>
+          <div class="coaching-detail">If you finish all your sets and reps easily, the weight goes up next session. That's the whole game. Aim for 5 lb increases on lower body, 2.5–5 lb on upper body DB work.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">6</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Track every session</div>
+          <div class="coaching-detail">Log every workout — exercise, sets, reps, weight used. Without tracking, progressive overload is guesswork. Use the log fields in this app every single session.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">7</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Rest periods matter</div>
+          <div class="coaching-detail">Use the prescribed rest times. Insufficient rest between heavy compound sets kills performance. The timer in each workout session is there for a reason — use it.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">8</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Watch for fatigue accumulation</div>
+          <div class="coaching-detail">If energy, strength, and motivation are all declining for 3+ sessions in a row, take a deload week immediately. Reduce loads 15–20%, drop 1 set per exercise. Keep all recovery blocks.</div>
+        </div>
+      </div>
+      <div class="coaching-item">
+        <div class="coaching-num">9</div>
+        <div class="coaching-content">
+          <div class="coaching-rule">Show up consistently</div>
+          <div class="coaching-detail">A decent workout you showed up for beats a perfect workout you skipped. Every single time. The program only works if you work the program.</div>
+        </div>
+      </div>
+    </div>
+    <div class="safe-bottom"></div>
+  </div>
+</div>
+
 <script>
 // ══════════════════════════════════
-// PROGRAM DATA
+// PROGRAM DATA — 8 WEEKS
 // ══════════════════════════════════
-const PROGRAM = [
-  // WEEK 1
-  {
-    day: 1, week: 1, label: 'Monday', type: 'workout',
-    name: 'Upper Body Push', duration: '55 min',
-    focus: 'Chest · Shoulders · Triceps',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Barbell Bench Press', prescription: '4 sets · 4–6 reps · RPE 8 · 3 min rest', sets: 4, pr: true },
-          { name: 'Overhead Press (DB)', prescription: '3 sets · 6–8 reps · RPE 7 · 2 min rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Incline DB Press', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-          { name: 'Lateral Raises', prescription: '3 sets · 15 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Tricep Rope Pushdown', prescription: '3 sets · 12–15 reps · 60s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Chest Doorframe Stretch', prescription: '3 × 30s hold each side', sets: 3, pr: false },
-          { name: 'Foam Roll — Upper Back', prescription: '2 min slow passes', sets: 1, pr: false },
-          { name: 'Band Pull-Aparts', prescription: '2 × 15 — light tension', sets: 2, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 2, week: 1, label: 'Tuesday', type: 'workout',
-    name: 'Lower Body', duration: '60 min',
-    focus: 'Quads · Hamstrings · Glutes · Calves',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Barbell Back Squat', prescription: '4 sets · 4–6 reps · RPE 8 · 3 min rest', sets: 4, pr: true },
-          { name: 'Romanian Deadlift', prescription: '3 sets · 6–8 reps · RPE 7 · 2 min rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Leg Press', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-          { name: 'Leg Curl (Machine)', prescription: '3 sets · 12 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Standing Calf Raise', prescription: '4 sets · 15–20 reps · 45s rest', sets: 4, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Hip Flexor Stretch', prescription: '3 × 30s each side', sets: 3, pr: false },
-          { name: 'Foam Roll — Quads & IT Band', prescription: '2 min each side', sets: 1, pr: false },
-          { name: 'Glute Bridge Hold', prescription: '2 × 30s hold', sets: 2, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 3, week: 1, label: 'Wednesday', type: 'recovery',
-    name: 'Active Recovery', duration: '30–45 min',
-    focus: 'Mobility · Bloodflow · CNS Reset',
-  },
-  {
-    day: 4, week: 1, label: 'Thursday', type: 'workout',
-    name: 'Upper Body Pull', duration: '55 min',
-    focus: 'Back · Biceps · Rear Delts',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Weighted Pull-Ups', prescription: '4 sets · 4–6 reps · RPE 8 · 3 min rest', sets: 4, pr: true },
-          { name: 'Barbell Row (Pendlay)', prescription: '3 sets · 5–6 reps · RPE 7 · 2 min rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Seated Cable Row', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-          { name: 'Face Pulls', prescription: '3 sets · 15 reps · 60s rest — light', sets: 3, pr: false },
-          { name: 'DB Hammer Curl', prescription: '3 sets · 10–12 reps · 60s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Lat Hang / Dead Hang', prescription: '3 × 20–30s', sets: 3, pr: false },
-          { name: 'Foam Roll — Thoracic Spine', prescription: '2 min', sets: 1, pr: false },
-          { name: 'Neck Stretch (Gentle)', prescription: '4 directions × 20s — very light', sets: 1, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 5, week: 1, label: 'Friday', type: 'workout',
-    name: 'Lower Body + Core', duration: '60 min',
-    focus: 'Posterior Chain · Core · Power',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Trap Bar Deadlift', prescription: '4 sets · 4–5 reps · RPE 8 · 3 min rest', sets: 4, pr: true },
-          { name: 'Bulgarian Split Squat', prescription: '3 sets · 8 reps each leg · 90s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Leg Extension (Machine)', prescription: '3 sets · 15 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Hip Thrust (Barbell)', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Core Circuit (3 rounds)',
-        exercises: [
-          { name: 'Ab Wheel Rollout', prescription: '3 × 8–10 reps', sets: 3, pr: false },
-          { name: 'Pallof Press', prescription: '3 × 12 each side — anti-rotation focus', sets: 3, pr: false },
-          { name: 'Dead Bug', prescription: '3 × 8 reps — controlled', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (8 min)',
-        exercises: [
-          { name: 'Foam Roll — Hamstrings & Glutes', prescription: '2 min each area', sets: 1, pr: false },
-          { name: 'Pigeon Pose', prescription: '3 × 30s each side', sets: 3, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 6, week: 1, label: 'Saturday', type: 'rest',
-    name: 'Rest Day', duration: '',
-    focus: '',
-  },
-  {
-    day: 7, week: 1, label: 'Sunday', type: 'rest',
-    name: 'Rest Day', duration: '',
-    focus: '',
-  },
 
-  // WEEK 2
-  {
-    day: 8, week: 2, label: 'Monday', type: 'workout',
-    name: 'Upper Body Push', duration: '55 min',
-    focus: 'Chest · Shoulders · Triceps — Progressive Overload',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Barbell Bench Press', prescription: '4 sets · 4–6 reps · +2.5–5 lbs vs. Week 1', sets: 4, pr: true },
-          { name: 'Overhead Press (DB)', prescription: '3 sets · 6–8 reps · RPE 7.5', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Incline DB Press', prescription: '3 sets · 10–12 reps · +2–5 lbs vs. Week 1', sets: 3, pr: false },
-          { name: 'Cable Lateral Raises', prescription: '3 sets · 15 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Overhead Tricep Extension (Cable)', prescription: '3 sets · 12–15 reps · 60s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Chest Doorframe Stretch', prescription: '3 × 30s hold each side', sets: 3, pr: false },
-          { name: 'Foam Roll — Upper Back', prescription: '2 min slow passes', sets: 1, pr: false },
-          { name: 'Band Pull-Aparts', prescription: '2 × 15 — light tension', sets: 2, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 9, week: 2, label: 'Tuesday', type: 'workout',
-    name: 'Lower Body', duration: '60 min',
-    focus: 'Quads · Hamstrings · Glutes — Progressive Overload',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Barbell Back Squat', prescription: '4 sets · 4–6 reps · +5 lbs vs. Week 1', sets: 4, pr: true },
-          { name: 'Romanian Deadlift', prescription: '3 sets · 6–8 reps · +5 lbs vs. Week 1', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Hack Squat (Machine)', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-          { name: 'Seated Leg Curl', prescription: '3 sets · 12 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Seated Calf Raise', prescription: '4 sets · 15–20 reps · 45s rest', sets: 4, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Hip Flexor Stretch', prescription: '3 × 30s each side', sets: 3, pr: false },
-          { name: 'Foam Roll — Quads & IT Band', prescription: '2 min each side', sets: 1, pr: false },
-          { name: 'Glute Bridge Hold', prescription: '2 × 30s hold', sets: 2, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 10, week: 2, label: 'Wednesday', type: 'recovery',
-    name: 'Active Recovery', duration: '30–45 min',
-    focus: 'Mobility · Bloodflow · CNS Reset',
-  },
-  {
-    day: 11, week: 2, label: 'Thursday', type: 'workout',
-    name: 'Upper Body Pull', duration: '55 min',
-    focus: 'Back · Biceps · Rear Delts — Progressive Overload',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Weighted Pull-Ups', prescription: '4 sets · 4–6 reps · +2.5 lbs vs. Week 1', sets: 4, pr: true },
-          { name: 'Barbell Row (Pendlay)', prescription: '3 sets · 5–6 reps · +5 lbs vs. Week 1', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Single-Arm DB Row', prescription: '3 sets · 10–12 reps · 90s rest', sets: 3, pr: false },
-          { name: 'Reverse Pec Deck', prescription: '3 sets · 15 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Incline DB Curl', prescription: '3 sets · 10–12 reps · 60s rest', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (10 min)',
-        exercises: [
-          { name: 'Lat Hang / Dead Hang', prescription: '3 × 20–30s', sets: 3, pr: false },
-          { name: 'Foam Roll — Thoracic Spine', prescription: '2 min', sets: 1, pr: false },
-          { name: 'Neck Stretch (Gentle)', prescription: '4 directions × 20s — very light', sets: 1, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 12, week: 2, label: 'Friday', type: 'workout',
-    name: 'Lower Body + Core', duration: '60 min',
-    focus: 'Posterior Chain · Core · Power — Progressive Overload',
-    sections: [
-      {
-        label: 'Compound — Primary',
-        exercises: [
-          { name: 'Trap Bar Deadlift', prescription: '4 sets · 4–5 reps · +5 lbs vs. Week 1', sets: 4, pr: true },
-          { name: 'Bulgarian Split Squat', prescription: '3 sets · 8 reps each leg · +5 lbs', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Hypertrophy — Accessory',
-        exercises: [
-          { name: 'Leg Press', prescription: '3 sets · 12 reps · 60s rest', sets: 3, pr: false },
-          { name: 'Hip Thrust (Barbell)', prescription: '3 sets · 10–12 reps · +10 lbs', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Core Circuit (3 rounds)',
-        exercises: [
-          { name: 'Ab Wheel Rollout', prescription: '3 × 10–12 reps', sets: 3, pr: false },
-          { name: 'Pallof Press', prescription: '3 × 12 each side', sets: 3, pr: false },
-          { name: 'Hollow Body Hold', prescription: '3 × 20–30s', sets: 3, pr: false },
-        ]
-      },
-      {
-        label: 'Recovery Finisher (8 min)',
-        exercises: [
-          { name: 'Foam Roll — Hamstrings & Glutes', prescription: '2 min each area', sets: 1, pr: false },
-          { name: 'Pigeon Pose', prescription: '3 × 30s each side', sets: 3, pr: false },
-        ]
-      }
-    ]
-  },
-  {
-    day: 13, week: 2, label: 'Saturday', type: 'rest',
-    name: 'Rest Day', duration: '',
-    focus: '',
-  },
-  {
-    day: 14, week: 2, label: 'Sunday', type: 'rest',
-    name: 'Rest Day', duration: '',
-    focus: '',
-  },
-];
-
-const RECOVERY_PROTOCOL = {
-  name: 'Active Recovery',
+const TUESDAY_RECOVERY = {
   activities: [
-    { title: '20–30 min light walk or bike ride', detail: 'Keep heart rate under 130 BPM. This is bloodflow, not cardio.' },
-    { title: 'Full-body foam roll (10 min)', detail: 'Quads, hamstrings, upper back, lats. 60s per area.' },
-    { title: 'Hip flexor & thoracic mobility work (10 min)', detail: 'World\'s greatest stretch × 5 each side. Cat-cow × 10. Thread the needle × 10.' },
-    { title: 'Neck mobility — gentle only', detail: '4-direction stretch × 20s each. No rotation under load. Post-concussion protocol.' },
-    { title: 'Optional: cold shower finish', detail: '60–90 seconds cold at the end of your shower. Reduces inflammation and improves recovery.' },
+    { title: 'Option A — Full-Body Foam Roll + Stretch (Recommended)', detail: 'Foam roll: upper back (90s), lats + traps (60s each side), quads + IT band (60s each leg). Hip flexor stretch (90s each side). Pigeon pose (90s each side). Thread the needle (8 reps each). Box breathing (5 min): 4 in, 4 hold, 4 out, 4 hold.' },
+    { title: 'Option B — Low-Intensity Cardio', detail: '20–30 min easy walk, light cycling, or swimming. Heart rate under 130 BPM. Breathing should be conversational the whole time. This is blood flow — not a workout.' },
+    { title: 'Why This Day Exists', detail: 'Your body is adapting from Monday right now. This session keeps blood moving and speeds that process up. It sets you up for a better Wednesday. Don\'t treat this like a day off — treat it like part of the program.' },
   ]
 };
+
+const SATURDAY_RECOVERY = {
+  activities: [
+    { title: 'Option A — Full-Body Foam Roll + Stretch (Recommended)', detail: 'Foam roll: quads + IT band (60s each leg), hamstrings + glutes (60s each leg), upper back (90s), lats + traps (60s each side). Standing hamstring stretch (60s each side). Couch stretch (90s each side). World\'s Greatest Stretch (5 reps each side). Box breathing (5 min): 4 in, 4 hold, 4 out, 4 hold.' },
+    { title: 'Option B — Easy Cardio', detail: '20–30 min easy walk, light cycling, or swimming. Conversational pace. Heart rate under 130 BPM. Close the week on a calm note.' },
+    { title: 'Why This Day Exists', detail: 'You\'ve done 3 hard lifting sessions plus a full body day this week. This session is how you make sure all that work shows up as actual muscle — not just soreness. Don\'t skip it.' },
+  ]
+};
+
+function buildProgram() {
+  const prog = [];
+  for (let w = 1; w <= 8; w++) {
+    const isBlock2 = w >= 5;
+
+    // ── MONDAY: Upper Body ──
+    prog.push({
+      day: (w - 1) * 6 + 1, week: w, label: 'Monday', type: 'workout',
+      name: 'Upper Body', duration: '60 min',
+      focus: 'Chest · Back · Shoulders — DB Pressing Only',
+      sections: [
+        {
+          label: 'Warm-Up (8–10 min)',
+          exercises: [
+            { name: '5 min Bike / Treadmill Walk', prescription: '1 set · 5 min · Easy pace — elevate HR gently', sets: 1, pr: false },
+            { name: 'Band Pull-Aparts', prescription: '2 sets · 15 reps · 30s rest · Arms straight, slow & controlled', sets: 2, pr: false },
+            { name: 'Cat-Cow / Thoracic Rotation', prescription: '1 set · 8 reps each · Slow — spine mobility, neck-friendly', sets: 1, pr: false },
+            { name: 'Arm Circles + Shoulder Rolls', prescription: '1 set · 10 each direction · Relaxed — joint prep before pressing', sets: 1, pr: false },
+          ]
+        },
+        {
+          label: 'Main Work',
+          exercises: [
+            { name: 'Flat DB Press', prescription: `4 sets · ${isBlock2 ? '8–10' : '10–12'} reps · 90s rest · 3-1-1 tempo · DBs allow natural wrist tracking`, sets: 4, pr: true },
+            { name: 'Cable Row (Seated, Neutral Grip)', prescription: `4 sets · ${isBlock2 ? '8–10' : '10–12'} reps · 90s rest · 2-1-2 · Pull to belly button, squeeze scapulae`, sets: 4, pr: false },
+            { name: 'Incline DB Press', prescription: `3 sets · ${isBlock2 ? '10–12' : '12–15'} reps · 75s rest · 3-0-1 · Feel stretch at bottom`, sets: 3, pr: false },
+            { name: 'Lat Pulldown (Wide Grip)', prescription: `3 sets · ${isBlock2 ? '10–12' : '12–15'} reps · 75s rest · 2-1-2 · Slight lean, drive elbows toward hips`, sets: 3, pr: false },
+            { name: 'Face Pulls (Cable)', prescription: '3 sets · 20 reps · 60s rest · Every upper session — non-negotiable. Rear delt + rotator cuff.', sets: 3, pr: false },
+          ]
+        },
+        {
+          label: 'Recovery Block (8–10 min)',
+          exercises: [
+            { name: 'Doorway / Band Chest Stretch', prescription: '60 sec each side · Pec minor lengthening after DB pressing', sets: 2, pr: false },
+            { name: 'Lat Stretch (Kneeling or Standing)', prescription: '60 sec each side · Decompress lats after pulldowns and rows', sets: 2, pr: false },
+            { name: 'Foam Roll — Upper Back (T-Spine)', prescription: '60–90 sec · Extension over roller, slow passes · Thoracic mobility', sets: 1, pr: false },
+            { name: 'Foam Roll — Rear Delts / Traps', prescription: '45 sec each side · Tension release from rowing movements', sets: 2, pr: false },
+            { name: 'Deep Diaphragmatic Breathing', prescription: '10 deep breaths · Breathe into belly — parasympathetic shift', sets: 1, pr: false },
+          ]
+        }
+      ]
+    });
+
+    // ── TUESDAY: Active Recovery ──
+    prog.push({
+      day: (w - 1) * 6 + 2, week: w, label: 'Tuesday', type: 'recovery',
+      name: 'Active Recovery', duration: '30–45 min',
+      focus: 'Foam Roll · Stretch · Tissue Recovery',
+      recoveryType: 'tuesday'
+    });
+
+    // ── WEDNESDAY: Lower Body ──
+    prog.push({
+      day: (w - 1) * 6 + 3, week: w, label: 'Wednesday', type: 'workout',
+      name: 'Lower Body', duration: '60 min',
+      focus: 'Squats · Hinge · Accessories · Core',
+      sections: [
+        {
+          label: 'Warm-Up (8–10 min)',
+          exercises: [
+            { name: '5 min Bike (Moderate)', prescription: '1 set · 5 min · Warm hips and knees', sets: 1, pr: false },
+            { name: 'Bodyweight Squats', prescription: '2 sets · 15 reps · 30s rest · Slow & controlled — reinforce the pattern', sets: 2, pr: false },
+            { name: 'Hip Circles', prescription: '1 set · 10 each direction · Controlled — hip mobility prep', sets: 1, pr: false },
+            { name: 'Lateral Band Walks', prescription: '2 sets · 12 each way · 30s rest · Light band — glute activation', sets: 2, pr: false },
+          ]
+        },
+        {
+          label: 'Main Work',
+          exercises: [
+            { name: 'Barbell Back Squat', prescription: `4 sets · ${isBlock2 ? '6–8' : '8–10'} reps · 2 min rest · 3-1-1 · Full depth, progress load every 1–2 weeks`, sets: 4, pr: true },
+            { name: 'Romanian Deadlift (Barbell)', prescription: `4 sets · ${isBlock2 ? '6–8' : '8–10'} reps · 2 min rest · 3-1-1 · Hip hinge, bar stays close, feel hamstring stretch`, sets: 4, pr: false },
+            { name: 'Leg Press', prescription: '3 sets · 12–15 reps · 90s rest · 3-0-1 · High foot placement, full ROM', sets: 3, pr: false },
+            { name: 'Leg Curl (Lying Machine)', prescription: '3 sets · 12–15 reps · 75s rest · 2-1-2 · Foot dorsiflexed, slow eccentric', sets: 3, pr: false },
+            { name: 'Seated Calf Raise', prescription: '3 sets · 15–20 reps · 60s rest · 2-1-2 · Full ROM — below parallel at bottom', sets: 3, pr: false },
+            { name: 'Dead Bug', prescription: '3 sets · 8–10 each side · 60s rest · Lumbar flat, opposite arm & leg, go slow', sets: 3, pr: false },
+          ]
+        },
+        {
+          label: 'Recovery Block (8–10 min)',
+          exercises: [
+            { name: 'Couch Stretch (Hip Flexor)', prescription: '90 sec each side · After squats and deadlifts — non-negotiable', sets: 2, pr: false },
+            { name: 'Standing Hamstring Stretch', prescription: '60 sec each side · Priority after RDLs every session', sets: 2, pr: false },
+            { name: 'Foam Roll — Quads / IT Band', prescription: '60–90 sec each leg · Slow rolls, pause on tight spots', sets: 2, pr: false },
+            { name: 'Foam Roll — Hamstrings + Glutes', prescription: '60 sec each leg · Work the full back of the leg', sets: 2, pr: false },
+            { name: 'Supine Figure-Four Stretch', prescription: '60 sec each side · Hip external rotation, lower back tension relief', sets: 2, pr: false },
+          ]
+        }
+      ]
+    });
+
+    // ── THURSDAY: Rest ──
+    prog.push({
+      day: (w - 1) * 6 + 4, week: w, label: 'Thursday', type: 'rest',
+      name: 'Rest Day', duration: '',
+      focus: 'Full Rest — Mandatory',
+    });
+
+    // ── FRIDAY: Full Body ──
+    prog.push({
+      day: (w - 1) * 6 + 5, week: w, label: 'Friday', type: 'workout',
+      name: 'Full Body', duration: '60 min',
+      focus: 'Push · Pull · Lower · Core',
+      sections: [
+        {
+          label: 'Warm-Up (8–10 min)',
+          exercises: [
+            { name: '5 min Bike or Elliptical', prescription: '1 set · 5 min · Easy — whole-body prep', sets: 1, pr: false },
+            { name: 'Bodyweight Squat + Reach', prescription: '1 set · 10 reps · Squat down, reach arms overhead — hips and thoracic', sets: 1, pr: false },
+            { name: 'Band Pull-Aparts', prescription: '2 sets · 12 reps · 30s rest · Controlled — shoulder activation', sets: 2, pr: false },
+            { name: 'Glute Bridge (Bodyweight)', prescription: '1 set · 15 reps · 2-1-2 · Drive through heels, squeeze at top', sets: 1, pr: false },
+          ]
+        },
+        {
+          label: 'Main Work',
+          exercises: [
+            { name: 'Seated DB Shoulder Press', prescription: `4 sets · ${isBlock2 ? '8–10' : '10–12'} reps · 90s rest · Seated for spine support · Rate neck stiffness first`, sets: 4, pr: true },
+            { name: 'Lat Pulldown (Wide Grip)', prescription: '4 sets · 10–12 reps · 90s rest · 2-1-2 · Drive elbows down toward hips, slight lean', sets: 4, pr: false },
+            { name: 'Bulgarian Split Squat (DB)', prescription: '3 sets · 10–12 reps each leg · 90s rest · Rear foot on bench, stay tall', sets: 3, pr: false },
+            { name: 'Barbell Hip Thrust', prescription: '3 sets · 12–15 reps · 90s rest · 2-1-2 (hold top) · Upper back on bench, drive through heel', sets: 3, pr: false },
+            { name: 'Cable Woodchop (Low-to-High)', prescription: '3 sets · 12 each side · 60s rest · Rotate from hips, not just arms — full-body finisher', sets: 3, pr: false },
+          ]
+        },
+        {
+          label: 'Recovery Block (8–10 min)',
+          exercises: [
+            { name: 'Pigeon Pose', prescription: '90 sec each side · Deep glute release after split squats and hip thrusts', sets: 2, pr: false },
+            { name: 'Cross-Body Shoulder Stretch', prescription: '45 sec each side · Rear delt release after pulling', sets: 2, pr: false },
+            { name: 'Hip Flexor Stretch (Kneeling)', prescription: '90 sec each side · Counter all lower body loading', sets: 2, pr: false },
+            { name: 'Foam Roll — Upper Back + Lats', prescription: '60–90 sec · Full-session decompression', sets: 1, pr: false },
+            { name: 'Box Breathing', prescription: '10 breaths · 4 in, 4 hold, 4 out — end-of-week reset', sets: 1, pr: false },
+          ]
+        }
+      ]
+    });
+
+    // ── SATURDAY: Active Recovery ──
+    prog.push({
+      day: (w - 1) * 6 + 6, week: w, label: 'Saturday', type: 'recovery',
+      name: 'Active Recovery', duration: '30–45 min',
+      focus: 'Full-Body Reset · Close the Week',
+      recoveryType: 'saturday'
+    });
+  }
+  return prog;
+}
+
+const PROGRAM = buildProgram();
 
 // ══════════════════════════════════
 // STATE & LOCAL STORAGE
@@ -1201,19 +1274,17 @@ let timerRunning = false;
 let timerSeconds = 150;
 let timerInterval = null;
 
-const STORAGE_KEY = 'dom_nick_2week';
+const STORAGE_KEY = 'dom_nick_8week';
 const PROFILE_KEY = 'dom_nick_profile';
 
-// Default profile values
 const DEFAULT_PROFILE = {
   name: 'Nick Garberina',
   age: '25',
-    height: "5'6\"",
+  height: '5\'6"',
   weight: '140 lbs',
   gym: "Gold's Gym",
   sleep: '8–9 hrs',
   stress: 'Moderate–High',
-  recovery: 'Foam rolling, stretching'
 };
 
 function loadProfile() {
@@ -1278,7 +1349,6 @@ function showTab(tab) {
 
   if (tab === 'schedule') {
     document.getElementById('screen-schedule').classList.add('active');
-    document.querySelectorAll('#screen-schedule .nav-btn')[0]?.classList.add('active');
     renderSchedule();
   } else if (tab === 'progress') {
     document.getElementById('screen-progress').classList.add('active');
@@ -1289,14 +1359,38 @@ function showTab(tab) {
   } else if (tab === 'settings') {
     document.getElementById('screen-settings').classList.add('active');
     populateSettingsForm();
+  } else if (tab === 'supplements') {
+    document.getElementById('screen-supplements').classList.add('active');
+  } else if (tab === 'coaching') {
+    document.getElementById('screen-coaching').classList.add('active');
+  }
+}
+
+function buildWeekTabs() {
+  const container = document.getElementById('week-tabs-container');
+  if (!container) return;
+  container.innerHTML = '';
+  for (let w = 1; w <= 8; w++) {
+    const isBlock2 = w >= 5;
+    const btn = document.createElement('button');
+    btn.className = 'week-tab' + (w === currentWeek ? ' active' : '');
+    btn.id = 'tab-w' + w;
+    btn.onclick = () => switchWeek(w);
+    btn.innerHTML = `Week ${w}<span class="week-block-badge">${isBlock2 ? 'Block 2' : 'Block 1'}</span>`;
+    container.appendChild(btn);
   }
 }
 
 function switchWeek(w) {
   currentWeek = w;
-  document.getElementById('tab-w1').classList.toggle('active', w === 1);
-  document.getElementById('tab-w2').classList.toggle('active', w === 2);
+  for (let i = 1; i <= 8; i++) {
+    const tab = document.getElementById('tab-w' + i);
+    if (tab) tab.classList.toggle('active', i === w);
+  }
   renderSchedule();
+  // Scroll active tab into view
+  const activeTab = document.getElementById('tab-w' + w);
+  if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 function goBack() {
@@ -1323,7 +1417,7 @@ function renderSchedule() {
     card.className = 'day-card' + (isToday ? ' today' : '') + (done ? ' completed' : '');
 
     let meta = '';
-    if (day.type === 'rest') meta = 'Rest Day';
+    if (day.type === 'rest') meta = 'Full Rest — Mandatory';
     else if (day.type === 'recovery') meta = day.focus;
     else meta = day.focus + (day.duration ? ' · ' + day.duration : '');
 
@@ -1331,10 +1425,11 @@ function renderSchedule() {
     if (isToday && !done) badge = '<span class="today-badge">Today</span>';
     if (done) badge = '<span class="done-badge">Done ✓</span>';
 
+    const dayPos = ((day.day - 1) % 6) + 1;
     const arrow = day.type === 'rest' ? '—' : '›';
 
     card.innerHTML = `<div class="day-card-inner">
-      <div class="day-number">${day.day}</div>
+      <div class="day-number">${dayPos}</div>
       <div class="day-info">
         <div class="day-name">${day.label} — ${day.name}${badge}</div>
         <div class="day-meta">${meta}</div>
@@ -1351,13 +1446,12 @@ function renderSchedule() {
 }
 
 function getTodayDayIdx() {
-  // Returns 1–14 based on today — for demo, Day 1 = current Monday
-  // In production, would calculate from program start date
-  const today = new Date();
-  const dow = today.getDay(); // 0=Sun, 1=Mon...
-  // Map to our week structure: Mon=Day 1, Tue=Day 2, etc
-  // For demo: just return day 1 as "today" always, override as needed
-  return 1;
+  const dow = new Date().getDay(); // 0=Sun, 1=Mon...
+  // Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6, Sun=not shown
+  const posMap = {1:1, 2:2, 3:3, 4:4, 5:5, 6:6};
+  const pos = posMap[dow];
+  if (!pos) return -1;
+  return (currentWeek - 1) * 6 + pos;
 }
 
 // ══════════════════════════════════
@@ -1368,7 +1462,7 @@ function openWorkout(day) {
   document.getElementById('screen-schedule').classList.remove('active');
   document.getElementById('screen-workout').classList.add('active');
   document.getElementById('workout-title').textContent = day.name;
-  document.getElementById('workout-chip').textContent = 'Day ' + day.day + ' of 14';
+  document.getElementById('workout-chip').textContent = `Week ${day.week} · ${day.label}`;
   document.getElementById('workout-meta').textContent = 'Nick Garberina · Gold\'s Gym · ' + (day.duration || '');
 
   const scroll = document.getElementById('workout-scroll');
@@ -1430,7 +1524,7 @@ function openWorkout(day) {
   // Finish button
   const finishBtn = el('button', isDayDone(day.day) ? 'finish-btn done-btn' : 'finish-btn');
   finishBtn.id = 'finish-btn';
-  finishBtn.textContent = isDayDone(day.day) ? '✓ WORKOUT COMPLETE — Tap to Undo' : 'FINISH WORKOUT';
+  finishBtn.textContent = isDayDone(day.day) ? '✓ WORKOUT COMPLETE' : 'FINISH WORKOUT';
   finishBtn.onclick = () => finishWorkout(day.day);
   scroll.appendChild(finishBtn);
 
@@ -1441,11 +1535,18 @@ function openWorkout(day) {
 }
 
 function renderRecovery(scroll, day) {
+  const protocol = day.recoveryType === 'saturday' ? SATURDAY_RECOVERY : TUESDAY_RECOVERY;
+
   const card = el('div', 'recovery-card');
-  card.innerHTML = `<div class="recovery-icon">🧘</div><div class="recovery-title">Active Recovery Day</div><div class="recovery-text">Today is about rebuilding, not breaking down. Follow this protocol to accelerate next week's performance.</div>`;
+  const icon = day.recoveryType === 'saturday' ? '🌀' : '🧘';
+  const subtitle = day.recoveryType === 'saturday'
+    ? 'Close the week right. Full-body reset before Monday.'
+    : 'Your body is adapting from Monday. Keep blood moving and set up a better Wednesday.';
+
+  card.innerHTML = `<div class="recovery-icon">${icon}</div><div class="recovery-title">Active Recovery Day</div><div class="recovery-text">${subtitle}</div>`;
 
   const list = el('div', 'recovery-list');
-  RECOVERY_PROTOCOL.activities.forEach(a => {
+  protocol.activities.forEach(a => {
     const item = el('div', 'recovery-item');
     item.innerHTML = `<span class="rec-bullet">▸</span><div class="rec-text"><strong>${a.title}</strong><br>${a.detail}</div>`;
     list.appendChild(item);
@@ -1454,17 +1555,16 @@ function renderRecovery(scroll, day) {
   scroll.appendChild(card);
 
   const notesCard = el('div', 'notes-card');
-  notesCard.style.marginTop = '0';
   notesCard.innerHTML = `<div class="notes-label">Recovery Notes</div><textarea class="notes-input" placeholder="How's the body feeling? Any soreness to flag?" onchange="saveNotes(${day.day}, this.value)" oninput="saveNotes(${day.day}, this.value)">${loadNotes(day.day)}</textarea>`;
   scroll.appendChild(notesCard);
 
   const finBtn = el('button', isDayDone(day.day) ? 'finish-btn done-btn' : 'finish-btn');
-  finBtn.textContent = isDayDone(day.day) ? '✓ RECOVERY LOGGED — Tap to Undo' : 'LOG RECOVERY DAY';
+  finBtn.textContent = isDayDone(day.day) ? '✓ RECOVERY LOGGED' : 'LOG RECOVERY DAY';
   finBtn.onclick = () => {
     const nowDone = !isDayDone(day.day);
     saveDayDone(day.day, nowDone);
-    if (nowDone) { finBtn.textContent = '✓ RECOVERY LOGGED — Tap to Undo'; finBtn.className = 'finish-btn done-btn'; }
-    else { finBtn.textContent = 'LOG RECOVERY DAY'; finBtn.className = 'finish-btn'; }
+    finBtn.textContent = nowDone ? '✓ RECOVERY LOGGED — Tap to Undo' : 'LOG RECOVERY DAY';
+    finBtn.className = nowDone ? 'finish-btn done-btn' : 'finish-btn';
   };
   scroll.appendChild(finBtn);
 
@@ -1489,7 +1589,6 @@ function toggleSet(dayNum, eIdx, sIdx, totalSets) {
   const btn = document.getElementById(`chk-${dayNum}-${eIdx}-${sIdx}`);
   if (btn) btn.className = 'check-btn' + (newDone ? ' done' : '');
 
-  // Style inputs
   const row = btn?.closest('.set-row');
   if (row) {
     row.querySelectorAll('.set-input').forEach(inp => {
@@ -1499,7 +1598,6 @@ function toggleSet(dayNum, eIdx, sIdx, totalSets) {
 
   updateProgress(dayNum, totalSets);
 
-  // Auto-start rest timer if completing a set
   if (newDone) {
     resetTimer(true);
     toggleTimer();
@@ -1525,13 +1623,8 @@ function finishWorkout(dayNum) {
   saveDayDone(dayNum, newState);
   const btn = document.getElementById('finish-btn');
   if (btn) {
-    if (newState) {
-      btn.textContent = '✓ WORKOUT COMPLETE — Tap to Undo';
-      btn.className = 'finish-btn done-btn';
-    } else {
-      btn.textContent = 'FINISH WORKOUT';
-      btn.className = 'finish-btn';
-    }
+    btn.textContent = newState ? '✓ WORKOUT COMPLETE — Tap to Undo' : 'FINISH WORKOUT';
+    btn.className = newState ? 'finish-btn done-btn' : 'finish-btn';
   }
 }
 
@@ -1584,39 +1677,73 @@ function renderProgress() {
   const scroll = document.getElementById('progress-scroll');
   scroll.innerHTML = '';
 
-  const totalWorkouts = PROGRAM.filter(d => d.type === 'workout').length;
-  const doneWorkouts = PROGRAM.filter(d => d.type === 'workout' && isDayDone(d.day)).length;
-  const totalDays = PROGRAM.length;
-  const doneDays = PROGRAM.filter(d => isDayDone(d.day)).length;
+  const workoutDays = PROGRAM.filter(d => d.type === 'workout');
+  const totalWorkouts = workoutDays.length;
+  const doneWorkouts = workoutDays.filter(d => isDayDone(d.day)).length;
+  const trackableDays = PROGRAM.filter(d => d.type !== 'rest');
+  const doneDays = trackableDays.filter(d => isDayDone(d.day)).length;
+  const totalDays = trackableDays.length;
 
   const grid = el('div', 'stat-grid');
   grid.innerHTML = `
     <div class="stat-card"><div class="stat-value">${doneWorkouts}</div><div class="stat-label">Workouts Done</div></div>
     <div class="stat-card"><div class="stat-value">${totalWorkouts - doneWorkouts}</div><div class="stat-label">Remaining</div></div>
     <div class="stat-card"><div class="stat-value">${doneDays}</div><div class="stat-label">Days Logged</div></div>
-    <div class="stat-card"><div class="stat-value">${Math.round((doneDays/totalDays)*100)}%</div><div class="stat-label">Block Complete</div></div>
+    <div class="stat-card"><div class="stat-value">${Math.round((doneDays / totalDays) * 100)}%</div><div class="stat-label">Program Complete</div></div>
   `;
   scroll.appendChild(grid);
 
-  // Week 1
-  [1, 2].forEach(w => {
+  // Week summaries — 8 weeks
+  for (let w = 1; w <= 8; w++) {
     const weekCard = el('div', 'week-summary');
     const days = PROGRAM.filter(d => d.week === w);
+    const isBlock2 = w >= 5;
+    const todayIdx = getTodayDayIdx();
+
     const dots = days.map(d => {
       if (d.type === 'rest') return '<div class="day-dot rest"></div>';
       if (isDayDone(d.day)) return '<div class="day-dot done"></div>';
-      if (d.day === 1) return '<div class="day-dot today"></div>';
+      if (d.day === todayIdx) return '<div class="day-dot today"></div>';
       return '<div class="day-dot"></div>';
     }).join('');
 
     const dayLabels = days.map(d => `<div style="flex:1;text-align:center;font-size:9px;color:var(--text-dim);margin-top:4px;letter-spacing:0.04em">${d.label.slice(0,2)}</div>`).join('');
 
-    weekCard.innerHTML = `<div class="week-summary-title">Week ${w}</div><div class="day-dots">${dots}</div><div style="display:flex;gap:6px;margin-top:2px">${dayLabels}</div>`;
+    weekCard.innerHTML = `<div class="week-summary-title" style="display:flex;justify-content:space-between;align-items:center;">
+      <span>Week ${w}</span>
+      <span style="font-size:10px;color:${isBlock2 ? 'var(--red)' : 'var(--text-muted)'};letter-spacing:0.06em;">${isBlock2 ? 'Block 2 — Intensification' : 'Block 1 — Volume'}</span>
+    </div><div class="day-dots">${dots}</div><div style="display:flex;gap:6px;margin-top:2px">${dayLabels}</div>`;
     scroll.appendChild(weekCard);
-  });
+  }
+
+  // Supplement Recommendations link
+  const suppLink = el('div', 'detail-link-card');
+  suppLink.onclick = () => showTab('supplements');
+  suppLink.innerHTML = `
+    <div class="detail-link-left">
+      <div class="detail-link-eyebrow">Reference</div>
+      <div class="detail-link-title">Supplement Recommendations</div>
+      <div class="detail-link-sub">Creatine, D3, Magnesium, Fish Oil & more</div>
+    </div>
+    <div class="detail-link-arrow">›</div>
+  `;
+  scroll.appendChild(suppLink);
+
+  // Coaching Notes link
+  const coachLink = el('div', 'detail-link-card');
+  coachLink.onclick = () => showTab('coaching');
+  coachLink.innerHTML = `
+    <div class="detail-link-left">
+      <div class="detail-link-eyebrow">Reference</div>
+      <div class="detail-link-title">Coaching Notes & Key Reminders</div>
+      <div class="detail-link-sub">Rules, principles, and what never changes</div>
+    </div>
+    <div class="detail-link-arrow">›</div>
+  `;
+  scroll.appendChild(coachLink);
 
   const note = el('div', 'coach-note');
-  note.innerHTML = `<div class="coach-label">Progress Note</div><div class="coach-text">Green = completed. Red = today. Empty = upcoming. Rest days shown in gray. Data saved on this device — weights and notes persist between sessions.</div>`;
+  note.innerHTML = `<div class="coach-label">Progress Note</div><div class="coach-text">Green = completed. Red = today. Empty = upcoming. Rest days shown in gray. All data saves locally on this device — weights and notes persist between sessions.</div>`;
   scroll.appendChild(note);
 
   const safe = el('div', 'safe-bottom');
@@ -1639,7 +1766,6 @@ function renderProfileScreen() {
   const p = loadProfile();
   const initials = p.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
 
-  // Update header
   const titleEl = document.getElementById('profile-title-text');
   const subEl = document.getElementById('profile-sub-text');
   if (titleEl) titleEl.textContent = 'Profile';
@@ -1653,7 +1779,7 @@ function renderProfileScreen() {
       <div class="avatar">${initials}</div>
       <div>
         <div class="profile-name">${p.name}</div>
-        <div class="profile-meta">${p.age} · ${p.gym}</div>
+        <div class="profile-meta">${p.age} · Male · ${p.gym}</div>
       </div>
     </div>
 
@@ -1661,21 +1787,18 @@ function renderProfileScreen() {
       <div class="info-row"><span class="info-key">Height</span><span class="info-val">${p.height}</span></div>
       <div class="info-row"><span class="info-key">Weight</span><span class="info-val">${p.weight}</span></div>
       <div class="info-row"><span class="info-key">Goal</span><span class="info-val">Muscle Gain &amp; General Fitness</span></div>
-      <div class="info-row"><span class="info-key">Experience</span><span class="info-val">Advanced Knowledge / Intermediate Strength</span></div>
-      <div class="info-row"><span class="info-key">Plan Duration</span><span class="info-val">2 Months (Test: 2 Weeks)</span></div>
+      <div class="info-row-stacked">
+        <span class="info-key-stacked">Experience</span>
+        <span class="info-val-stacked">Advanced Knowledge / Intermediate Strength</span>
+      </div>
+      <div class="info-row"><span class="info-key">Plan Duration</span><span class="info-val">8 Weeks (2 Months)</span></div>
       <div class="info-row"><span class="info-key">Sleep</span><span class="info-val">${p.sleep}</span></div>
       <div class="info-row"><span class="info-key">Stress</span><span class="info-val">${p.stress}</span></div>
     </div>
 
     <div class="coach-note">
       <div class="coach-label">Coach Note</div>
-      <div class="coach-text">Nick — given your concussion history, upper body loads are kept intentionally lighter for the first 2 weeks. Legs are full intensity. All sets should be done with excellent form before adding weight. Recovery portions at the end of each session are non-negotiable.</div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-row"><span class="info-key">Injuries / Limitations</span><span class="info-val">Post-concussion (cleared). Lighter upper body.</span></div>
-      <div class="info-row"><span class="info-key">Recovery Tools</span><span class="info-val">${p.recovery}</span></div>
-      <div class="info-row"><span class="info-key">Rest Day</span><span class="info-val">Sunday (mandatory)</span></div>
+      <div class="coach-text">Nick — upper body loads are kept intentionally conservative, especially early. All chest pressing is DB-only, permanent. Rate your neck stiffness before every upper session — if it's a 6 or above, reduce load 20% and skip overhead pressing. Legs are full intensity from Day 1. Recovery sessions are non-negotiable.</div>
     </div>
 
     <div class="safe-bottom"></div>
@@ -1684,7 +1807,7 @@ function renderProfileScreen() {
 
 function populateSettingsForm() {
   const p = loadProfile();
-  const fields = ['name','age','height','weight','gym','sleep','recovery'];
+  const fields = ['name','age','height','weight','gym','sleep'];
   fields.forEach(f => {
     const el = document.getElementById('set-' + f);
     if (el) el.value = p[f] || '';
@@ -1696,6 +1819,7 @@ function populateSettingsForm() {
 // ══════════════════════════════════
 // INIT
 // ══════════════════════════════════
+buildWeekTabs();
 renderSchedule();
 renderProfileScreen();
 
@@ -1757,7 +1881,7 @@ if (isIOS() && !isStandalone()) {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swCode = `
-const CACHE='dom-nick-v1';
+const CACHE='dom-nick-v2';
 const ASSETS=['./nick_2week_tracker.html','./manifest.json'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
