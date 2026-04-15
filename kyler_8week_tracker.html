@@ -1119,7 +1119,7 @@ function buildProgram() {
 
     // \u2014 MONDAY: Upper Body A \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 1, type: 'workout',
+      week: w, day: (w - 1) * 6 + 1, type: 'workout',
       title: 'Monday \u2014 Upper Body A',
       focus: 'Chest \u00B7 Back \u00B7 Biceps \u2014 DB Pressing Only',
       sections: [
@@ -1147,7 +1147,7 @@ function buildProgram() {
 
     // \u2014 TUESDAY: Recovery \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 2, type: 'recovery',
+      week: w, day: (w - 1) * 6 + 2, type: 'recovery',
       title: 'Tuesday \u2014 Recovery',
       focus: 'Active Recovery \u2014 Essential for Adaptation',
       sections: [{ label: 'Recovery', exercises: [] }],
@@ -1156,7 +1156,7 @@ function buildProgram() {
 
     // \u2014 WEDNESDAY: Lower Body A \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 3, type: 'workout',
+      week: w, day: (w - 1) * 6 + 3, type: 'workout',
       title: 'Wednesday \u2014 Lower Body A',
       focus: 'Quads \u00B7 Hamstrings \u00B7 Glutes \u2014 Squat Focus',
       sections: [
@@ -1184,7 +1184,7 @@ function buildProgram() {
 
     // \u2014 THURSDAY: Upper Body B \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 4, type: 'workout',
+      week: w, day: (w - 1) * 6 + 4, type: 'workout',
       title: 'Thursday \u2014 Upper Body B',
       focus: 'Shoulders \u00B7 Triceps \u00B7 Upper Back \u2014 Press + Pull',
       sections: [
@@ -1212,7 +1212,7 @@ function buildProgram() {
 
     // \u2014 FRIDAY: Lower Body B \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 5, type: 'workout',
+      week: w, day: (w - 1) * 6 + 5, type: 'workout',
       title: 'Friday \u2014 Lower Body B',
       focus: 'Glutes \u00B7 Hamstrings \u00B7 Core \u2014 Hip Hinge Focus',
       sections: [
@@ -1240,7 +1240,7 @@ function buildProgram() {
 
     // \u2014 SATURDAY: Conditioning \u2014
     prog.push({
-      week: w, dayIndex: (w - 1) * 6 + 6, type: 'workout',
+      week: w, day: (w - 1) * 6 + 6, type: 'workout',
       title: 'Saturday \u2014 Conditioning',
       focus: 'Cardio \u00B7 Mobility \u00B7 Recovery Prep \u2014 Keep HR Moderate',
       sections: [
@@ -1426,7 +1426,7 @@ function renderSchedule() {
     card.innerHTML = `<div class="day-card-inner">
       <div class="day-number">${dayPos}</div>
       <div class="day-info">
-        <div class="day-name">${day.label} — ${day.name}${badge}</div>
+        <div class="day-name">${day.title}${badge}</div>
         <div class="day-meta">${meta}</div>
       </div>
       <div class="day-arrow">${arrow}</div>
@@ -1456,8 +1456,8 @@ function openWorkout(day) {
   currentDayData = day;
   document.getElementById('screen-schedule').classList.remove('active');
   document.getElementById('screen-workout').classList.add('active');
-  document.getElementById('workout-title').textContent = day.name;
-  document.getElementById('workout-chip').textContent = `Week ${day.week} · ${day.label}`;
+  document.getElementById('workout-title').textContent = day.title;
+  document.getElementById('workout-chip').textContent = `Week ${day.week} · ${day.title}`;
   document.getElementById('workout-meta').textContent = 'Kyler Carpenter · Gold\'s Gym · ' + (day.duration || '');
 
   const scroll = document.getElementById('workout-scroll');
