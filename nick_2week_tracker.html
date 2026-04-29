@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="manifest" href="nick_manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Nick's Program">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Nick's Training Plan — Discipline Over Motivation</title>
@@ -1143,11 +1146,12 @@ function buildProgram() {
         {
           label: 'Main Work',
           exercises: [
-            { name: 'Flat DB Press', prescription: `4 sets · ${isBlock2 ? '8–10' : '10–12'} reps · 90s rest · 3-1-1 tempo · DBs allow natural wrist tracking`, sets: 4, pr: true },
-            { name: 'Cable Row (Seated, Neutral Grip)', prescription: `4 sets · ${isBlock2 ? '8–10' : '10–12'} reps · 90s rest · 2-1-2 · Pull to belly button, squeeze scapulae`, sets: 4, pr: false },
-            { name: 'Incline DB Press', prescription: `3 sets · ${isBlock2 ? '10–12' : '12–15'} reps · 75s rest · 3-0-1 · Feel stretch at bottom`, sets: 3, pr: false },
-            { name: 'Lat Pulldown (Wide Grip)', prescription: `3 sets · ${isBlock2 ? '10–12' : '12–15'} reps · 75s rest · 2-1-2 · Slight lean, drive elbows toward hips`, sets: 3, pr: false },
-            { name: 'Face Pulls (Cable)', prescription: '3 sets · 20 reps · 60s rest · Every upper session — non-negotiable. Rear delt + rotator cuff.', sets: 3, pr: false },
+            { name: 'Incline DB Press', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 go heavier than Block 1, controlled descent' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 DB all the way to chest, feel stretch at bottom of each rep', sets: 4 },
+            { name: 'Seated Cable Row (or DB Row)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight, full retraction, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight to body, full shoulder blade retraction', sets: 4 },
+            { name: 'Chest Fly', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 feel stretch at bottom, moderate load' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 slight bend in elbow, feel stretch at bottom of each rep', sets: 3 },
+            { name: 'Single Arm Cable Tricep Pulldowns (Alternating)', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps ea \u00B7 60s rest \u00B7 supinate at top \u2014 heavier DBs' : '3 sets \u00B7 12-15 reps ea \u00B7 60s rest \u00B7 supinate wrist at top of each rep', sets: 3 },
+            { name: 'Cable Cross-Body Row', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 hand across body, feel lat stretch, drive elbow to hip' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 lean slightly back, drive elbows down toward hips', sets: 3 },
+            { name: 'EZ-Bar Bicep Curls', prescription: isBlock2 ? '2 sets \u00B7 10-12 reps ea \u00B7 60s rest \u2014 neutral grip, controlled' : '2 sets \u00B7 15 reps ea \u00B7 60s rest \u00B7 neutral grip, slow down phase', sets: 2 },
           ]
         },
         {
