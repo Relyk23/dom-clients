@@ -1310,10 +1310,24 @@ function saveData(dayNum, exIdx, setIdx, field, value) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
 }
 
-function loadData(dayNum, exIdx, setIdx, field) {
+function getLastWeekBestSet(currentDayNum, exIdx, sets) {
+  // Each week is 6 days. Find the same day position last week.
+  const lastWeekDayNum = currentDayNum - 6;
+  if (lastWeekDayNum < 1) return null; // Week 1 — no prior data
+
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  const k = `d${dayNum}_e${exIdx}_s${setIdx}_${field}`;
-  return stored[k] || '';
+  let best = null;
+
+  for (let s = 0; s < sets; s++) {
+    const lbs = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_lbs`]);
+    const reps = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_reps`]);
+    const done = stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_done`] === '1';
+    if (!done || isNaN(lbs) || isNaN(reps)) continue;
+    if (!best || lbs > best.lbs || (lbs === best.lbs && reps > best.reps)) {
+      best = { lbs, reps };
+    }
+  }
+  return best;
 }
 
 function saveDayDone(dayNum, done) {
