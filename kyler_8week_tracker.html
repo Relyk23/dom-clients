@@ -1506,7 +1506,13 @@ function openWorkout(day) {
       const exCard = el('div', 'ex-card');
       const eIdx = globalExIdx;
 
-      let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div></div>`;
+      const isSimple = /warm|recovery/i.test(section.label);
+      const lastBest = (!isSimple && ex.sets) ? getLastWeekBestSet(day.day, eIdx, ex.sets) : null;
+const lastWeekLine = lastBest
+  ? `<div style="font-size:11px;color:var(--green);margin-top:3px;font-family:'DM Mono',monospace;">↑ Last week: ${lastBest.lbs} lbs × ${lastBest.reps} reps</div>`
+  : '';
+      
+let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div>${lastWeekLine}</div>`;
       if (ex.pr) headerHTML += `<span class="pr-badge">PR Zone</span>`;
 
               const isSimple = /warm|recovery/i.test(section.label);
