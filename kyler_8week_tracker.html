@@ -58,15 +58,12 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; background: var(--black); font-family: 'DM Sans', sans-serif; color: var(--text); overscroll-behavior: none; }
   body { display: flex; flex-direction: column; max-width: 430px; margin: 0 auto; height: 100dvh; }
-
   /* SCREENS */
   .screen { display: none; flex-direction: column; height: 100%; }
   .screen.active { display: flex; }
-
   /* STATUS BAR SPACER */
   .safe-top { height: env(safe-area-inset-top, 12px); background: var(--black); min-height: 12px; }
   .safe-bottom { height: env(safe-area-inset-bottom, 8px); min-height: 8px; }
-
   /* ── HEADER ── */
   .app-header {
     background: var(--black);
@@ -94,7 +91,6 @@
     color: var(--text);
   }
   .header-sub { font-size: 12px; color: var(--text-muted); }
-
   /* ── SCROLL BODY ── */
   .scroll-body {
     flex: 1;
@@ -105,7 +101,6 @@
     flex-direction: column;
     gap: 10px;
   }
-
   /* ── BOTTOM NAV ── */
   .bottom-nav {
     background: var(--black);
@@ -129,7 +124,6 @@
   .nav-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); transition: color 0.15s; }
   .nav-btn.active .nav-icon { opacity: 1; }
   .nav-btn.active .nav-label { color: var(--red); }
-
   /* ── WEEK TABS ── */
   .week-tabs-scroll {
     overflow-x: auto;
@@ -171,7 +165,6 @@
     margin-top: 1px;
   }
   .week-tab.active .week-block-badge { color: var(--red); opacity: 0.8; }
-
   /* ── DAY CARD ── */
   .day-card {
     background: var(--surface);
@@ -229,7 +222,6 @@
     border-radius: 20px;
     margin-left: 6px;
   }
-
   /* ── WORKOUT SCREEN ── */
   .workout-header {
     background: var(--black);
@@ -284,7 +276,6 @@
     color: var(--text-muted);
     margin-top: 4px;
   }
-
   /* PROGRESS BAR */
   .progress-wrap {
     background: var(--surface);
@@ -301,7 +292,6 @@
   .progress-pct { font-size: 12px; font-weight: 500; color: var(--text); }
   .prog-bar-bg { height: 4px; background: var(--surface3); border-radius: 2px; }
   .prog-bar-fill { height: 100%; background: var(--red); border-radius: 2px; transition: width 0.4s ease; }
-
   /* SECTION LABEL */
   .section-label {
     font-family: 'Bebas Neue', sans-serif;
@@ -310,7 +300,6 @@
     color: var(--red);
     padding: 4px 0 2px;
   }
-
   /* EXERCISE CARD */
   .ex-card {
     background: var(--surface);
@@ -406,7 +395,6 @@
     color: #fff;
   }
   .check-btn:active { transform: scale(0.9); }
-
   /* NOTES CARD */
   .notes-card {
     background: var(--surface);
@@ -430,7 +418,6 @@
     transition: border-color 0.15s;
   }
   .notes-input:focus { border-color: var(--red); }
-
   /* REST TIMER */
   .timer-card {
     background: var(--surface);
@@ -460,7 +447,6 @@
   }
   .timer-btn:active { background: var(--red-dark); }
   .timer-btn.secondary { background: var(--surface3); }
-
   /* FINISH BTN */
   .finish-btn {
     background: var(--red);
@@ -477,7 +463,6 @@
   }
   .finish-btn:active { background: var(--red-dark); }
   .finish-btn.done-btn { background: var(--green); }
-
   /* RECOVERY CARD */
   .recovery-card {
     background: var(--surface);
@@ -504,7 +489,6 @@
   .rec-bullet { color: var(--red); font-size: 16px; line-height: 1.4; flex-shrink: 0; }
   .rec-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
   .rec-text strong { color: var(--text); font-weight: 500; }
-
   /* PROGRESS SCREEN */
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-card {
@@ -540,7 +524,6 @@
   .day-dot.done { background: var(--green); }
   .day-dot.rest { background: var(--surface2); border: 1px solid var(--border); }
   .day-dot.today { background: var(--red); }
-
   /* PROGRESS DETAIL LINK CARDS */
   .detail-link-card {
     background: var(--surface);
@@ -560,7 +543,6 @@
   .detail-link-title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.3; }
   .detail-link-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
   .detail-link-arrow { color: var(--red); font-size: 18px; }
-
   /* DETAIL SCREENS (Supplements, Coaching Notes) */
   .detail-section-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -615,7 +597,6 @@
     line-height: 1.5;
     padding: 4px 8px;
   }
-
   /* PROFILE SCREEN */
   .profile-header {
     background: var(--surface);
@@ -670,7 +651,6 @@
   .info-row-stacked:last-child { border-bottom: none; }
   .info-key-stacked { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
   .info-val-stacked { font-size: 14px; font-weight: 500; color: var(--text); }
-
   /* COACH NOTE */
   .coach-note {
     background: var(--red-dim);
@@ -680,7 +660,6 @@
   }
   .coach-label { font-size: 10px; letter-spacing: 0.12em; color: var(--red); text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
   .coach-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-
   /* SETTINGS SCREEN */
   .settings-gear {
     background: none;
@@ -764,7 +743,6 @@
 </style>
 </head>
 <body>
-
 <!-- ══════════════════════════════════════════
      SCREEN 1: SCHEDULE
 ══════════════════════════════════════════ -->
@@ -801,7 +779,6 @@
   </div>
   <div class="safe-bottom"></div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 2: WORKOUT
 ══════════════════════════════════════════ -->
@@ -819,7 +796,6 @@
   <div class="scroll-body" id="workout-scroll"></div>
   <div class="safe-bottom"></div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 3: PROGRESS
 ══════════════════════════════════════════ -->
@@ -851,7 +827,6 @@
   </div>
   <div class="safe-bottom"></div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 4: PROFILE
 ══════════════════════════════════════════ -->
@@ -885,7 +860,6 @@
   </div>
   <div class="safe-bottom"></div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 5: SETTINGS
 ══════════════════════════════════════════ -->
@@ -902,27 +876,19 @@
     </div>
   </div>
   <div class="scroll-body" id="settings-scroll">
-
     <div class="settings-section-title">Personal Info</div>
-
     <div class="settings-field-label">Full Name</div>
     <input class="settings-input" id="set-name" type="text" placeholder="Full name" oninput="saveProfileField('name',this.value)">
-
     <div class="settings-field-label">Age</div>
     <input class="settings-input" id="set-age" type="number" inputmode="numeric" placeholder="Age" oninput="saveProfileField('age',this.value)">
-
     <div class="settings-field-label">Height</div>
     <input class="settings-input" id="set-height" type="text" placeholder='e.g. 5&apos;6"' oninput="saveProfileField('height',this.value)">
-
     <div class="settings-field-label">Weight</div>
     <input class="settings-input" id="set-weight" type="text" placeholder="e.g. 140 lbs" oninput="saveProfileField('weight',this.value)">
-
     <div class="settings-field-label">Gym / Training Location</div>
     <input class="settings-input" id="set-gym" type="text" placeholder="e.g. Gold's Gym" oninput="saveProfileField('gym',this.value)">
-
     <div class="settings-field-label">Sleep (avg hours/night)</div>
     <input class="settings-input" id="set-sleep" type="text" placeholder="e.g. 8-9 hrs" oninput="saveProfileField('sleep',this.value)">
-
     <div class="settings-field-label">Stress Level</div>
     <select class="settings-input" id="set-stress" onchange="saveProfileField('stress',this.value)">
       <option value="">Select...</option>
@@ -932,27 +898,19 @@
       <option value="High">High</option>
       <option value="Very High">Very High</option>
     </select>
-
     <div class="settings-divider"></div>
     <div class="settings-section-title">Locked by Coach</div>
-
     <div class="settings-field-label">Goal</div>
     <div class="settings-locked"><span>Muscle Gain & General Fitness</span><span class="locked-icon">🔒</span></div>
-
     <div class="settings-field-label">Experience Level</div>
     <div class="settings-locked"><span>Advanced Knowledge / Intermediate Strength</span><span class="locked-icon">🔒</span></div>
-
     <div class="settings-field-label">Coach Note</div>
     <div class="settings-locked" style="display:block;line-height:1.5;font-size:13px;color:var(--text-muted);">Set by your coach. Contact them to request changes. <span class="locked-icon">🔒</span></div>
-
     <div class="settings-divider"></div>
-
     <button class="settings-save-btn" onclick="saveAndReturnProfile()">SAVE CHANGES</button>
-
     <div class="safe-bottom"></div>
   </div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 6: SUPPLEMENT RECOMMENDATIONS
 ══════════════════════════════════════════ -->
@@ -1008,7 +966,6 @@
     <div class="safe-bottom"></div>
   </div>
 </div>
-
 <!-- ══════════════════════════════════════════
      SCREEN 7: COACHING NOTES & KEY REMINDERS
 ══════════════════════════════════════════ -->
@@ -1101,158 +1058,149 @@
     <div class="safe-bottom"></div>
   </div>
 </div>
-
 <script>
 // ============================================================
-// PROGRAM DATA \u2014 8 WEEKS
+// PROGRAM DATA — 8 WEEKS
 // ============================================================
-
 const TUESDAY_RECOVERY = {
   activities: [
-    { title: 'Option A \u2014 Full-Body Foam Roll + Stretch (Recommended)', detail: 'Upper back, lats, quads, hamstrings. Hold 45-90 sec each. Total 30-45 min. This is recovery investment, not optional.' },
-    { title: 'Option B \u2014 Low-Intensity Cardio', detail: '20-30 min easy walk, light cycling, or swimming. HR under 130 BPM.' },
+    { title: 'Option A — Full-Body Foam Roll + Stretch (Recommended)', detail: 'Upper back, lats, quads, hamstrings. Hold 45-90 sec each. Total 30-45 min. This is recovery investment, not optional.' },
+    { title: 'Option B — Low-Intensity Cardio', detail: '20-30 min easy walk, light cycling, or swimming. HR under 130 BPM.' },
     { title: 'Why This Day Exists', detail: 'Placed after Upper Body A to flush tissue fatigue before Wednesday lower body. With a very active lifestyle plus 4 training days, recovery sessions are non-negotiable.' }
   ]
 };
-
 function buildProgram() {
   const prog = [];
   for (let w = 1; w <= 8; w++) {
     const isBlock2 = w >= 5;
-
-    // \u2014 MONDAY: Upper Body A \u2014
+    // — MONDAY: Upper Body A —
     prog.push({
       week: w, day: (w - 1) * 6 + 1, type: 'workout',
-      title: 'Monday \u2014 Upper Body A',
-      focus: 'Chest \u00B7 Back \u00B7 Biceps \u2014 DB Pressing Only',
+      title: 'Monday — Upper Body A',
+      focus: 'Chest · Back · Biceps — DB Pressing Only',
       sections: [
         {
           label: 'Warm-Up (8-10 min)',
           exercises: [
             { name: '5 min Bike / Treadmill Walk', prescription: 'Moderate pace, HR 110-130' },
-            { name: 'Band Pull-Aparts', prescription: '2 sets \u00B7 15 reps' },
+            { name: 'Band Pull-Aparts', prescription: '2 sets · 15 reps' },
             { name: 'Cat-Cow + Thoracic Rotation', prescription: '60 sec each' }
           ]
         },
         {
           label: 'Main Work',
           exercises: [
-            { name: 'Incline DB Press', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 go heavier than Block 1, controlled descent' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 DB all the way to chest, feel stretch at bottom of each rep', sets: 4 },
-            { name: 'Seated Cable Row (or DB Row)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight, full retraction, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight to body, full shoulder blade retraction', sets: 4 },
-            { name: 'Chest Fly', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 feel stretch at bottom, moderate load' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 slight bend in elbow, feel stretch at bottom of each rep', sets: 3 },
-            { name: 'Single Arm Cable Tricep Pulldowns (Alternating)', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps ea \u00B7 60s rest \u00B7 supinate at top \u2014 heavier DBs' : '3 sets \u00B7 12-15 reps ea \u00B7 60s rest \u00B7 supinate wrist at top of each rep', sets: 3 },
-            { name: 'Cable Cross-Body Row', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 hand across body, feel lat stretch, drive elbow to hip' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 lean slightly back, drive elbows down toward hips', sets: 3 },
-            { name: 'EZ-Bar Bicep Curls', prescription: isBlock2 ? '2 sets \u00B7 10-12 reps ea \u00B7 60s rest \u2014 neutral grip, controlled' : '2 sets \u00B7 15 reps ea \u00B7 60s rest \u00B7 neutral grip, slow down phase', sets: 2 },
+            { name: 'Incline DB Press', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — go heavier than Block 1, controlled descent' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — DB all the way to chest, feel stretch at bottom of each rep', sets: 4 },
+            { name: 'Seated Cable Row (or DB Row)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 2-1-2 tempo — elbows tight, full retraction, go heavier' : '4 sets · 12-15 reps · 90s rest · 2-1-2 tempo — elbows tight to body, full shoulder blade retraction', sets: 4 },
+            { name: 'Chest Fly', prescription: isBlock2 ? '3 sets · 8-10 reps · 75s rest · 3-0-1 tempo — feel stretch at bottom, moderate load' : '3 sets · 12-15 reps · 75s rest · 3-0-1 tempo — slight bend in elbow, feel stretch at bottom of each rep', sets: 3 },
+            { name: 'Single Arm Cable Tricep Pulldowns (Alternating)', prescription: isBlock2 ? '3 sets · 8-10 reps ea · 60s rest · supinate at top — heavier DBs' : '3 sets · 12-15 reps ea · 60s rest · supinate wrist at top of each rep', sets: 3 },
+            { name: 'Cable Cross-Body Row', prescription: isBlock2 ? '3 sets · 10-12 reps · 75s rest · 2-1-2 tempo — hand across body, feel lat stretch, drive elbow to hip' : '3 sets · 12-15 reps · 75s rest · 2-1-2 tempo — lean slightly back, drive elbows down toward hips', sets: 3 },
+            { name: 'EZ-Bar Bicep Curls', prescription: isBlock2 ? '2 sets · 10-12 reps ea · 60s rest — neutral grip, controlled' : '2 sets · 15 reps ea · 60s rest · neutral grip, slow down phase', sets: 2 },
           ]
         }
       ]
     });
-
-    // \u2014 TUESDAY: Recovery \u2014
+    // — TUESDAY: Recovery —
     prog.push({
       week: w, day: (w - 1) * 6 + 2, type: 'recovery',
-      title: 'Tuesday \u2014 Recovery',
-      focus: 'Active Recovery \u2014 Essential for Adaptation',
+      title: 'Tuesday — Recovery',
+      focus: 'Active Recovery — Essential for Adaptation',
       sections: [{ label: 'Recovery', exercises: [] }],
       recoveryData: TUESDAY_RECOVERY
     });
-
-    // \u2014 WEDNESDAY: Lower Body A \u2014
+    // — WEDNESDAY: Lower Body A —
     prog.push({
       week: w, day: (w - 1) * 6 + 3, type: 'workout',
-      title: 'Wednesday \u2014 Lower Body A',
-      focus: 'Quads \u00B7 Hamstrings \u00B7 Glutes \u2014 Squat Focus',
+      title: 'Wednesday — Lower Body A',
+      focus: 'Quads · Hamstrings · Glutes — Squat Focus',
       sections: [
         {
           label: 'Warm-Up (8-10 min)',
           exercises: [
             { name: '5 min Bike', prescription: 'Build up to moderate pace' },
             { name: 'Leg Swings (Front/Back + Side/Side)', prescription: '10 reps each direction' },
-            { name: 'Glute Bridge Hold', prescription: '2 sets \u00B7 30 sec hold' },
-            { name: 'Box Step-Up (bodyweight)', prescription: '2 sets \u00B7 8 reps each leg' }
+            { name: 'Glute Bridge Hold', prescription: '2 sets · 30 sec hold' },
+            { name: 'Box Step-Up (bodyweight)', prescription: '2 sets · 8 reps each leg' }
           ]
         },
         {
           label: 'Main Work',
           exercises: [
-            { name: 'Goblet Squat or Leg Press', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 heavier, focus on quad drive out of hole' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 sit tall, chest up, knees track over toes', sets: 4 },
-            { name: 'Romanian Deadlift (DB)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 feel hamstring stretch fully, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 hinge from hips, feel hamstring stretch, soft knees', sets: 4 },
-            { name: 'Walking Lunge (DB)', prescription: isBlock2 ? '3 sets \u00B7 10 steps ea \u00B7 75s rest \u2014 add weight or use longer stride' : '3 sets \u00B7 12 steps ea \u00B7 75s rest \u2014 controlled, full knee drop, stay tall', sets: 3 },
-            { name: 'Leg Curl (Machine or Band)', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 60s rest \u2014 full ROM, squeeze at top' : '3 sets \u00B7 15 reps \u00B7 60s rest \u2014 full ROM, squeeze at top', sets: 3 },
-            { name: 'Standing Calf Raise', prescription: isBlock2 ? '3 sets \u00B7 12-15 reps \u00B7 45s rest \u2014 full ROM, pause at bottom' : '3 sets \u00B7 20 reps \u00B7 45s rest \u2014 full ROM, controlled', sets: 3 }
+            { name: 'Goblet Squat or Leg Press', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — heavier, focus on quad drive out of hole' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — sit tall, chest up, knees track over toes', sets: 4 },
+            { name: 'Romanian Deadlift (DB)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — feel hamstring stretch fully, go heavier' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — hinge from hips, feel hamstring stretch, soft knees', sets: 4 },
+            { name: 'Walking Lunge (DB)', prescription: isBlock2 ? '3 sets · 10 steps ea · 75s rest — add weight or use longer stride' : '3 sets · 12 steps ea · 75s rest — controlled, full knee drop, stay tall', sets: 3 },
+            { name: 'Leg Curl (Machine or Band)', prescription: isBlock2 ? '3 sets · 10-12 reps · 60s rest — full ROM, squeeze at top' : '3 sets · 15 reps · 60s rest — full ROM, squeeze at top', sets: 3 },
+            { name: 'Standing Calf Raise', prescription: isBlock2 ? '3 sets · 12-15 reps · 45s rest — full ROM, pause at bottom' : '3 sets · 20 reps · 45s rest — full ROM, controlled', sets: 3 }
           ]
         }
       ]
     });
-
-    // \u2014 THURSDAY: Upper Body B \u2014
+    // — THURSDAY: Upper Body B —
     prog.push({
       week: w, day: (w - 1) * 6 + 4, type: 'workout',
-      title: 'Thursday \u2014 Upper Body B',
-      focus: 'Shoulders \u00B7 Triceps \u00B7 Upper Back \u2014 Press + Pull',
+      title: 'Thursday — Upper Body B',
+      focus: 'Shoulders · Triceps · Upper Back — Press + Pull',
       sections: [
         {
           label: 'Warm-Up (8-10 min)',
           exercises: [
             { name: '5 min Light Cardio', prescription: 'Bike or walk' },
-            { name: 'Shoulder Circles + Wall Slides', prescription: '2 sets \u00B7 10 reps' },
-            { name: 'Band Face Pulls', prescription: '2 sets \u00B7 15 reps' }
+            { name: 'Shoulder Circles + Wall Slides', prescription: '2 sets · 10 reps' },
+            { name: 'Band Face Pulls', prescription: '2 sets · 15 reps' }
           ]
         },
         {
           label: 'Main Work',
           exercises: [
-            { name: 'DB Shoulder Press (Seated)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 full ROM overhead, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 full press overhead, lower controlled', sets: 4 },
-            { name: 'DB Lateral Raise', prescription: isBlock2 ? '4 sets \u00B7 10-12 reps \u00B7 60s rest \u2014 slight forward lean, control the descent' : '4 sets \u00B7 15 reps \u00B7 60s rest \u2014 slight forward lean, raise to shoulder height', sets: 4 },
-            { name: 'Face Pull (Cable or Band)', prescription: isBlock2 ? '3 sets \u00B7 12-15 reps \u00B7 60s rest \u2014 external rotation at end range' : '3 sets \u00B7 15 reps \u00B7 60s rest \u2014 pull to face level, elbows high', sets: 3 },
-            { name: 'Tricep Pushdown (Cable or Band)', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 60s rest \u2014 lock elbows at sides, full extension' : '3 sets \u00B7 15 reps \u00B7 60s rest \u2014 elbows fixed, full extension at bottom', sets: 3 },
-            { name: 'Overhead Tricep Extension (DB)', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 60s rest \u2014 full ROM, go heavier' : '3 sets \u00B7 15 reps \u00B7 60s rest \u2014 lower fully behind head, press to full extension', sets: 3 },
-            { name: 'Rear Delt Fly (DB, bent-over)', prescription: isBlock2 ? '2 sets \u00B7 12-15 reps \u00B7 60s rest \u2014 lead with elbows, squeeze rear delts' : '2 sets \u00B7 15 reps \u00B7 60s rest \u2014 hinge forward, raise elbows out to sides', sets: 2 }
+            { name: 'DB Shoulder Press (Seated)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — full ROM overhead, go heavier' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — full press overhead, lower controlled', sets: 4 },
+            { name: 'DB Lateral Raise', prescription: isBlock2 ? '4 sets · 10-12 reps · 60s rest — slight forward lean, control the descent' : '4 sets · 15 reps · 60s rest — slight forward lean, raise to shoulder height', sets: 4 },
+            { name: 'Face Pull (Cable or Band)', prescription: isBlock2 ? '3 sets · 12-15 reps · 60s rest — external rotation at end range' : '3 sets · 15 reps · 60s rest — pull to face level, elbows high', sets: 3 },
+            { name: 'Tricep Pushdown (Cable or Band)', prescription: isBlock2 ? '3 sets · 10-12 reps · 60s rest — lock elbows at sides, full extension' : '3 sets · 15 reps · 60s rest — elbows fixed, full extension at bottom', sets: 3 },
+            { name: 'Overhead Tricep Extension (DB)', prescription: isBlock2 ? '3 sets · 10-12 reps · 60s rest — full ROM, go heavier' : '3 sets · 15 reps · 60s rest — lower fully behind head, press to full extension', sets: 3 },
+            { name: 'Rear Delt Fly (DB, bent-over)', prescription: isBlock2 ? '2 sets · 12-15 reps · 60s rest — lead with elbows, squeeze rear delts' : '2 sets · 15 reps · 60s rest — hinge forward, raise elbows out to sides', sets: 2 }
           ]
         }
       ]
     });
-
-    // \u2014 FRIDAY: Lower Body B \u2014
+    // — FRIDAY: Lower Body B —
     prog.push({
       week: w, day: (w - 1) * 6 + 5, type: 'workout',
-      title: 'Friday \u2014 Lower Body B',
-      focus: 'Glutes \u00B7 Hamstrings \u00B7 Core \u2014 Hip Hinge Focus',
+      title: 'Friday — Lower Body B',
+      focus: 'Glutes · Hamstrings · Core — Hip Hinge Focus',
       sections: [
         {
           label: 'Warm-Up (8-10 min)',
           exercises: [
             { name: '5 min Easy Bike or Walk', prescription: 'Easy pace, loosen hips' },
             { name: 'Hip Flexor Stretch', prescription: '60 sec each side' },
-            { name: 'Fire Hydrants', prescription: '2 sets \u00B7 15 reps each side' }
+            { name: 'Fire Hydrants', prescription: '2 sets · 15 reps each side' }
           ]
         },
         {
           label: 'Main Work',
           exercises: [
-            { name: 'Hip Thrust (DB or Barbell)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 squeeze glutes hard at top, heavier load' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 drive hips up, squeeze glutes hard at top', sets: 4 },
-            { name: 'DB Deadlift (or Trap Bar)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 push the floor away, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 push floor away, chest tall, hip hinge pattern', sets: 4 },
-            { name: 'Step-Up (DB, to box/bench)', prescription: isBlock2 ? '3 sets \u00B7 10 reps ea \u00B7 75s rest \u2014 drive through heel, add load' : '3 sets \u00B7 12 reps ea \u00B7 75s rest \u2014 push through heel, stay controlled on descent', sets: 3 },
-            { name: 'Leg Curl (Machine or Band)', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 60s rest \u2014 slow down phase, go heavier' : '3 sets \u00B7 15 reps \u00B7 60s rest \u2014 slow controlled down phase', sets: 3 },
-            { name: 'Plank Hold', prescription: isBlock2 ? '3 sets \u00B7 45-60 sec \u00B7 30s rest \u2014 squeeze everything' : '3 sets \u00B7 30-45 sec \u00B7 30s rest \u2014 squeeze glutes and core', sets: 3 },
-            { name: 'Dead Bug', prescription: isBlock2 ? '2 sets \u00B7 10 reps ea \u00B7 30s rest \u2014 slow, controlled, do not let low back arch' : '2 sets \u00B7 10 reps ea side \u00B7 30s rest \u2014 slow, controlled, keep low back flat', sets: 2 }
+            { name: 'Hip Thrust (DB or Barbell)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 2-1-2 tempo — squeeze glutes hard at top, heavier load' : '4 sets · 12-15 reps · 90s rest · 2-1-2 tempo — drive hips up, squeeze glutes hard at top', sets: 4 },
+            { name: 'DB Deadlift (or Trap Bar)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — push the floor away, go heavier' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — push floor away, chest tall, hip hinge pattern', sets: 4 },
+            { name: 'Step-Up (DB, to box/bench)', prescription: isBlock2 ? '3 sets · 10 reps ea · 75s rest — drive through heel, add load' : '3 sets · 12 reps ea · 75s rest — push through heel, stay controlled on descent', sets: 3 },
+            { name: 'Leg Curl (Machine or Band)', prescription: isBlock2 ? '3 sets · 10-12 reps · 60s rest — slow down phase, go heavier' : '3 sets · 15 reps · 60s rest — slow controlled down phase', sets: 3 },
+            { name: 'Plank Hold', prescription: isBlock2 ? '3 sets · 45-60 sec · 30s rest — squeeze everything' : '3 sets · 30-45 sec · 30s rest — squeeze glutes and core', sets: 3 },
+            { name: 'Dead Bug', prescription: isBlock2 ? '2 sets · 10 reps ea · 30s rest — slow, controlled, do not let low back arch' : '2 sets · 10 reps ea side · 30s rest — slow, controlled, keep low back flat', sets: 2 }
           ]
         }
       ]
     });
-
-    // \u2014 SATURDAY: Conditioning \u2014
+    // — SATURDAY: Conditioning —
     prog.push({
       week: w, day: (w - 1) * 6 + 6, type: 'workout',
-      title: 'Saturday \u2014 Conditioning',
-      focus: 'Cardio \u00B7 Mobility \u00B7 Recovery Prep \u2014 Keep HR Moderate',
+      title: 'Saturday — Conditioning',
+      focus: 'Cardio · Mobility · Recovery Prep — Keep HR Moderate',
       sections: [
         {
           label: 'Conditioning',
           exercises: [
-            { name: 'Zone 2 Cardio', prescription: isBlock2 ? '35-45 min \u00B7 HR 130-150 \u2014 bike, walk/run intervals, or swim' : '25-35 min \u00B7 HR 120-140 \u2014 steady bike, brisk walk, or light jog' },
-            { name: 'Full-Body Stretch Circuit', prescription: '15 min \u2014 hip flexors, hamstrings, lats, chest, shoulders' },
-            { name: 'Foam Roll Priority Areas', prescription: 'Quads, IT band, upper back \u2014 60 sec each' }
+            { name: 'Zone 2 Cardio', prescription: isBlock2 ? '35-45 min · HR 130-150 — bike, walk/run intervals, or swim' : '25-35 min · HR 120-140 — steady bike, brisk walk, or light jog' },
+            { name: 'Full-Body Stretch Circuit', prescription: '15 min — hip flexors, hamstrings, lats, chest, shoulders' },
+            { name: 'Foam Roll Priority Areas', prescription: 'Quads, IT band, upper back — 60 sec each' }
           ]
         }
       ]
@@ -1261,20 +1209,16 @@ function buildProgram() {
   return prog;
 }
 const PROGRAM = buildProgram();
-
-
 // ============================================================
 // STATE & LOCAL STORAGE
-// ══════════════════════════════════
+// ============================================================
 let currentWeek = 1;
 let currentDayData = null;
 let timerRunning = false;
 let timerSeconds = 150;
 let timerInterval = null;
-
 const STORAGE_KEY = 'dom_kyler_8week';
 const PROFILE_KEY = 'dom_kyler_profile';
-
 const DEFAULT_PROFILE = {
   name: 'Kyler Carpenter',
   age: '25',
@@ -1284,40 +1228,38 @@ const DEFAULT_PROFILE = {
   sleep: '8–9 hrs',
   stress: 'Moderate–High',
 };
-
 function loadProfile() {
   try {
     const stored = localStorage.getItem(PROFILE_KEY);
     return stored ? Object.assign({}, DEFAULT_PROFILE, JSON.parse(stored)) : Object.assign({}, DEFAULT_PROFILE);
   } catch(e) { return Object.assign({}, DEFAULT_PROFILE); }
 }
-
 function saveProfileField(field, value) {
   const p = loadProfile();
   p[field] = value;
   localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
 }
-
 function saveAndReturnProfile() {
   renderProfileScreen();
   showTab('profile');
 }
-
 function saveData(dayNum, exIdx, setIdx, field, value) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   const k = `d${dayNum}_e${exIdx}_s${setIdx}_${field}`;
   stored[k] = value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
 }
-
+function loadData(dayNum, exIdx, setIdx, field) {
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const k = `d${dayNum}_e${exIdx}_s${setIdx}_${field}`;
+  return stored[k] || '';
+}
 function getLastWeekBestSet(currentDayNum, exIdx, sets) {
   // Each week is 6 days. Find the same day position last week.
   const lastWeekDayNum = currentDayNum - 6;
   if (lastWeekDayNum < 1) return null; // Week 1 — no prior data
-
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   let best = null;
-
   for (let s = 0; s < sets; s++) {
     const lbs = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_lbs`]);
     const reps = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_reps`]);
@@ -1329,36 +1271,30 @@ function getLastWeekBestSet(currentDayNum, exIdx, sets) {
   }
   return best;
 }
-
 function saveDayDone(dayNum, done) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   stored[`day${dayNum}_done`] = done;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
 }
-
 function isDayDone(dayNum) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   return !!stored[`day${dayNum}_done`];
 }
-
 function saveNotes(dayNum, text) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   stored[`day${dayNum}_notes`] = text;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
 }
-
 function loadNotes(dayNum) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   return stored[`day${dayNum}_notes`] || '';
 }
-
-// ══════════════════════════════════
+// ============================================================
 // NAV
-// ══════════════════════════════════
+// ============================================================
 function showTab(tab) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-
   if (tab === 'schedule') {
     document.getElementById('screen-schedule').classList.add('active');
     renderSchedule();
@@ -1377,7 +1313,6 @@ function showTab(tab) {
     document.getElementById('screen-coaching').classList.add('active');
   }
 }
-
 function buildWeekTabs() {
   const container = document.getElementById('week-tabs-container');
   if (!container) return;
@@ -1392,7 +1327,6 @@ function buildWeekTabs() {
     container.appendChild(btn);
   }
 }
-
 function switchWeek(w) {
   currentWeek = w;
   for (let i = 1; i <= 8; i++) {
@@ -1400,46 +1334,37 @@ function switchWeek(w) {
     if (tab) tab.classList.toggle('active', i === w);
   }
   renderSchedule();
-  // Scroll active tab into view
   const activeTab = document.getElementById('tab-w' + w);
   if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
-
 function goBack() {
   stopTimer();
   document.getElementById('screen-workout').classList.remove('active');
   document.getElementById('screen-schedule').classList.add('active');
   renderSchedule();
 }
-
-// ══════════════════════════════════
+// ============================================================
 // SCHEDULE RENDER
-// ══════════════════════════════════
+// ============================================================
 function renderSchedule() {
   const days = PROGRAM.filter(d => d.week === currentWeek);
   const list = document.getElementById('day-list');
   const todayIdx = getTodayDayIdx();
   list.innerHTML = '';
-
   days.forEach(day => {
     const done = isDayDone(day.day);
     const isToday = day.day === todayIdx;
-
     const card = document.createElement('div');
     card.className = 'day-card' + (isToday ? ' today' : '') + (done ? ' completed' : '');
-
     let meta = '';
     if (day.type === 'rest') meta = 'Full Rest — Mandatory';
     else if (day.type === 'recovery') meta = day.focus;
     else meta = day.focus + (day.duration ? ' · ' + day.duration : '');
-
     let badge = '';
     if (isToday && !done) badge = '<span class="today-badge">Today</span>';
     if (done) badge = '<span class="done-badge">Done ✓</span>';
-
     const dayPos = ((day.day - 1) % 6) + 1;
     const arrow = day.type === 'rest' ? '—' : '›';
-
     card.innerHTML = `<div class="day-card-inner">
       <div class="day-number">${dayPos}</div>
       <div class="day-info">
@@ -1448,27 +1373,22 @@ function renderSchedule() {
       </div>
       <div class="day-arrow">${arrow}</div>
     </div>`;
-
     if (day.type !== 'rest') {
       card.addEventListener('click', () => openWorkout(day));
     }
-
     list.appendChild(card);
   });
 }
-
 function getTodayDayIdx() {
-  const dow = new Date().getDay(); // 0=Sun, 1=Mon...
-  // Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6, Sun=not shown
+  const dow = new Date().getDay();
   const posMap = {1:1, 2:2, 3:3, 4:4, 5:5, 6:6};
   const pos = posMap[dow];
   if (!pos) return -1;
   return (currentWeek - 1) * 6 + pos;
 }
-
-// ══════════════════════════════════
+// ============================================================
 // WORKOUT RENDER
-// ══════════════════════════════════
+// ============================================================
 function openWorkout(day) {
   currentDayData = day;
   document.getElementById('screen-schedule').classList.remove('active');
@@ -1476,101 +1396,85 @@ function openWorkout(day) {
   document.getElementById('workout-title').textContent = day.title;
   document.getElementById('workout-chip').textContent = `Week ${day.week} · ${day.title}`;
   document.getElementById('workout-meta').textContent = 'Kyler Carpenter · Gold\'s Gym · ' + (day.duration || '');
-
   const scroll = document.getElementById('workout-scroll');
   scroll.innerHTML = '';
-
   if (day.type === 'recovery') {
     renderRecovery(scroll, day);
     return;
   }
-
   // Progress bar
   const progWrap = el('div', 'progress-wrap');
-  const totalSets = day.sections.reduce((a, s) => a + s.exercises.reduce((b, e) => b + e.sets, 0), 0);
+  const totalSets = day.sections.reduce((a, s) => a + s.exercises.reduce((b, e) => b + (e.sets || 0), 0), 0);
   progWrap.innerHTML = `<div class="progress-top"><span class="progress-label">Session progress</span><span class="progress-pct" id="prog-pct">0%</span></div><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog-fill" style="width:0%"></div></div>`;
   scroll.appendChild(progWrap);
-
   // Rest timer
   const timerCard = el('div', 'timer-card');
   timerCard.innerHTML = `<div class="timer-left"><div class="timer-label">Rest Timer</div><div class="timer-display" id="timer-disp">2:30</div></div><div class="timer-right"><button class="timer-btn secondary" onclick="resetTimer()">Reset</button><button class="timer-btn" id="timer-btn-main" onclick="toggleTimer()">Start</button></div>`;
   scroll.appendChild(timerCard);
-
   let globalExIdx = 0;
   day.sections.forEach((section) => {
     const label = el('div', 'section-label');
     label.textContent = section.label;
     scroll.appendChild(label);
-
     section.exercises.forEach((ex) => {
       const exCard = el('div', 'ex-card');
       const eIdx = globalExIdx;
 
+      // ── FIXED ORDER: isSimple first, then lastBest, then headerHTML ──
       const isSimple = /warm|recovery/i.test(section.label);
       const lastBest = (!isSimple && ex.sets) ? getLastWeekBestSet(day.day, eIdx, ex.sets) : null;
-const lastWeekLine = lastBest
-  ? `<div style="font-size:11px;color:var(--green);margin-top:3px;font-family:'DM Mono',monospace;">↑ Last week: ${lastBest.lbs} lbs × ${lastBest.reps} reps</div>`
-  : '';
-      
-let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div>${lastWeekLine}</div>`;
+      const lastWeekLine = lastBest
+        ? `<div style="font-size:11px;color:var(--green);margin-top:3px;font-family:'DM Mono',monospace;">↑ Last week: ${lastBest.lbs} lbs × ${lastBest.reps} reps</div>`
+        : '';
+      let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div>${lastWeekLine}</div>`;
       if (ex.pr) headerHTML += `<span class="pr-badge">PR Zone</span>`;
 
-              const isSimple = /warm|recovery/i.test(section.label);
-        let setsHTML = '';
-                if (!isSimple) {
-                          setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
-      for (let s = 0; s < ex.sets; s++) {
-        const savedLbs = loadData(day.day, eIdx, s, 'lbs');
-        const savedReps = loadData(day.day, eIdx, s, 'reps');
-        const savedDone = loadData(day.day, eIdx, s, 'done') === '1';
-        setsHTML += `<div class="set-row">
-          <span class="set-num">${s + 1}</span>
-          <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="lbs" value="${savedLbs}" onchange="onInput(${day.day},${eIdx},${s},'lbs',this.value)" oninput="onInput(${day.day},${eIdx},${s},'lbs',this.value)">
-          <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="reps" value="${savedReps}" onchange="onInput(${day.day},${eIdx},${s},'reps',this.value)" oninput="onInput(${day.day},${eIdx},${s},'reps',this.value)">
-          <button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-${s}" onclick="toggleSet(${day.day},${eIdx},${s},${totalSets})">✓</button>
-        </div>`;
+      let setsHTML = '';
+      if (!isSimple) {
+        setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
+        for (let s = 0; s < ex.sets; s++) {
+          const savedLbs = loadData(day.day, eIdx, s, 'lbs');
+          const savedReps = loadData(day.day, eIdx, s, 'reps');
+          const savedDone = loadData(day.day, eIdx, s, 'done') === '1';
+          setsHTML += `<div class="set-row">
+            <span class="set-num">${s + 1}</span>
+            <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="lbs" value="${savedLbs}" onchange="onInput(${day.day},${eIdx},${s},'lbs',this.value)" oninput="onInput(${day.day},${eIdx},${s},'lbs',this.value)">
+            <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="reps" value="${savedReps}" onchange="onInput(${day.day},${eIdx},${s},'reps',this.value)" oninput="onInput(${day.day},${eIdx},${s},'reps',this.value)">
+            <button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-${s}" onclick="toggleSet(${day.day},${eIdx},${s},${totalSets})">✓</button>
+          </div>`;
+        }
       }
-    }
-            if (isSimple) {
-                      const savedDone = loadData(day.day, eIdx, 0, 'done') === '1';
-                                headerHTML += `<button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-0" onclick="toggleSet(${day.day},${eIdx},0,${totalSets})">✓</button>`;
-                                        }
-
+      if (isSimple) {
+        const savedDone = loadData(day.day, eIdx, 0, 'done') === '1';
+        headerHTML += `<button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-0" onclick="toggleSet(${day.day},${eIdx},0,${totalSets})">✓</button>`;
+      }
       exCard.innerHTML = `<div class="ex-header">${headerHTML}</div>${setsHTML}`;
       scroll.appendChild(exCard);
       globalExIdx++;
     });
   });
-
   // Notes
   const notesCard = el('div', 'notes-card');
   notesCard.innerHTML = `<div class="notes-label">Session Notes</div><textarea class="notes-input" placeholder="How did it feel? Any PRs? Notes for next session..." onchange="saveNotes(${day.day}, this.value)" oninput="saveNotes(${day.day}, this.value)">${loadNotes(day.day)}</textarea>`;
   scroll.appendChild(notesCard);
-
   // Finish button
   const finishBtn = el('button', isDayDone(day.day) ? 'finish-btn done-btn' : 'finish-btn');
   finishBtn.id = 'finish-btn';
   finishBtn.textContent = isDayDone(day.day) ? '✓ WORKOUT COMPLETE' : 'FINISH WORKOUT';
   finishBtn.onclick = () => finishWorkout(day.day);
   scroll.appendChild(finishBtn);
-
   const safe = el('div', 'safe-bottom');
   scroll.appendChild(safe);
-
   updateProgress(day.day, totalSets);
 }
-
 function renderRecovery(scroll, day) {
   const protocol = day.recoveryType === 'saturday' ? SATURDAY_RECOVERY : TUESDAY_RECOVERY;
-
   const card = el('div', 'recovery-card');
   const icon = day.recoveryType === 'saturday' ? '🌀' : '🧘';
   const subtitle = day.recoveryType === 'saturday'
     ? 'Close the week right. Full-body reset before Monday.'
     : 'Your body is adapting from Monday. Keep blood moving and set up a better Wednesday.';
-
   card.innerHTML = `<div class="recovery-icon">${icon}</div><div class="recovery-title">Active Recovery Day</div><div class="recovery-text">${subtitle}</div>`;
-
   const list = el('div', 'recovery-list');
   protocol.activities.forEach(a => {
     const item = el('div', 'recovery-item');
@@ -1579,11 +1483,9 @@ function renderRecovery(scroll, day) {
   });
   card.appendChild(list);
   scroll.appendChild(card);
-
   const notesCard = el('div', 'notes-card');
   notesCard.innerHTML = `<div class="notes-label">Recovery Notes</div><textarea class="notes-input" placeholder="How's the body feeling? Any soreness to flag?" onchange="saveNotes(${day.day}, this.value)" oninput="saveNotes(${day.day}, this.value)">${loadNotes(day.day)}</textarea>`;
   scroll.appendChild(notesCard);
-
   const finBtn = el('button', isDayDone(day.day) ? 'finish-btn done-btn' : 'finish-btn');
   finBtn.textContent = isDayDone(day.day) ? '✓ RECOVERY LOGGED' : 'LOG RECOVERY DAY';
   finBtn.onclick = () => {
@@ -1593,43 +1495,35 @@ function renderRecovery(scroll, day) {
     finBtn.className = nowDone ? 'finish-btn done-btn' : 'finish-btn';
   };
   scroll.appendChild(finBtn);
-
   const safe = el('div', 'safe-bottom');
   scroll.appendChild(safe);
 }
-
-// ══════════════════════════════════
+// ============================================================
 // SET TRACKING
-// ══════════════════════════════════
+// ============================================================
 function onInput(dayNum, eIdx, sIdx, field, value) {
   saveData(dayNum, eIdx, sIdx, field, value);
 }
-
 function toggleSet(dayNum, eIdx, sIdx, totalSets) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   const k = `d${dayNum}_e${eIdx}_s${sIdx}_done`;
   const newDone = stored[k] !== '1';
   stored[k] = newDone ? '1' : '0';
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-
   const btn = document.getElementById(`chk-${dayNum}-${eIdx}-${sIdx}`);
   if (btn) btn.className = 'check-btn' + (newDone ? ' done' : '');
-
   const row = btn?.closest('.set-row');
   if (row) {
     row.querySelectorAll('.set-input').forEach(inp => {
       inp.className = 'set-input' + (newDone ? ' saved' : '');
     });
   }
-
   updateProgress(dayNum, totalSets);
-
   if (newDone) {
     resetTimer(true);
     toggleTimer();
   }
 }
-
 function updateProgress(dayNum, totalSets) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   let done = 0;
@@ -1642,7 +1536,6 @@ function updateProgress(dayNum, totalSets) {
   if (fill) fill.style.width = pct + '%';
   if (pctEl) pctEl.textContent = pct + '%';
 }
-
 function finishWorkout(dayNum) {
   const currentlyDone = isDayDone(dayNum);
   const newState = !currentlyDone;
@@ -1653,10 +1546,9 @@ function finishWorkout(dayNum) {
     btn.className = newState ? 'finish-btn done-btn' : 'finish-btn';
   }
 }
-
-// ══════════════════════════════════
+// ============================================================
 // TIMER
-// ══════════════════════════════════
+// ============================================================
 function toggleTimer() {
   if (timerRunning) {
     stopTimer();
@@ -1674,42 +1566,36 @@ function toggleTimer() {
     }, 1000);
   }
 }
-
 function stopTimer() {
   clearInterval(timerInterval);
   timerRunning = false;
   const btn = document.getElementById('timer-btn-main');
   if (btn) btn.textContent = 'Start';
 }
-
 function resetTimer(silent) {
   stopTimer();
   timerSeconds = 150;
   const disp = document.getElementById('timer-disp');
   if (disp) { disp.textContent = '2:30'; disp.classList.remove('done-color'); }
 }
-
 function updateTimerDisplay() {
   const m = Math.floor(timerSeconds / 60);
   const s = timerSeconds % 60;
   const disp = document.getElementById('timer-disp');
   if (disp) disp.textContent = m + ':' + String(s).padStart(2, '0');
 }
-
-// ══════════════════════════════════
+// ============================================================
 // PROGRESS SCREEN
-// ══════════════════════════════════
+// ============================================================
 function renderProgress() {
   const scroll = document.getElementById('progress-scroll');
   scroll.innerHTML = '';
-
   const workoutDays = PROGRAM.filter(d => d.type === 'workout');
   const totalWorkouts = workoutDays.length;
   const doneWorkouts = workoutDays.filter(d => isDayDone(d.day)).length;
   const trackableDays = PROGRAM.filter(d => d.type !== 'rest');
   const doneDays = trackableDays.filter(d => isDayDone(d.day)).length;
   const totalDays = trackableDays.length;
-
   const grid = el('div', 'stat-grid');
   grid.innerHTML = `
     <div class="stat-card"><div class="stat-value">${doneWorkouts}</div><div class="stat-label">Workouts Done</div></div>
@@ -1718,31 +1604,24 @@ function renderProgress() {
     <div class="stat-card"><div class="stat-value">${Math.round((doneDays / totalDays) * 100)}%</div><div class="stat-label">Program Complete</div></div>
   `;
   scroll.appendChild(grid);
-
-  // Week summaries — 8 weeks
   for (let w = 1; w <= 8; w++) {
     const weekCard = el('div', 'week-summary');
     const days = PROGRAM.filter(d => d.week === w);
     const isBlock2 = w >= 5;
     const todayIdx = getTodayDayIdx();
-
     const dots = days.map(d => {
       if (d.type === 'rest') return '<div class="day-dot rest"></div>';
       if (isDayDone(d.day)) return '<div class="day-dot done"></div>';
       if (d.day === todayIdx) return '<div class="day-dot today"></div>';
       return '<div class="day-dot"></div>';
     }).join('');
-
     const dayLabels = days.map(d => `<div style="flex:1;text-align:center;font-size:9px;color:var(--text-dim);margin-top:4px;letter-spacing:0.04em">${(d.title||'').slice(0,2)}</div>`).join('');
-
     weekCard.innerHTML = `<div class="week-summary-title" style="display:flex;justify-content:space-between;align-items:center;">
       <span>Week ${w}</span>
       <span style="font-size:10px;color:${isBlock2 ? 'var(--red)' : 'var(--text-muted)'};letter-spacing:0.06em;">${isBlock2 ? 'Block 2 — Intensification' : 'Block 1 — Volume'}</span>
     </div><div class="day-dots">${dots}</div><div style="display:flex;gap:6px;margin-top:2px">${dayLabels}</div>`;
     scroll.appendChild(weekCard);
   }
-
-  // Supplement Recommendations link
   const suppLink = el('div', 'detail-link-card');
   suppLink.onclick = () => showTab('supplements');
   suppLink.innerHTML = `
@@ -1754,8 +1633,6 @@ function renderProgress() {
     <div class="detail-link-arrow">›</div>
   `;
   scroll.appendChild(suppLink);
-
-  // Coaching Notes link
   const coachLink = el('div', 'detail-link-card');
   coachLink.onclick = () => showTab('coaching');
   coachLink.innerHTML = `
@@ -1767,39 +1644,32 @@ function renderProgress() {
     <div class="detail-link-arrow">›</div>
   `;
   scroll.appendChild(coachLink);
-
   const note = el('div', 'coach-note');
   note.innerHTML = `<div class="coach-label">Progress Note</div><div class="coach-text">Green = completed. Red = today. Empty = upcoming. Rest days shown in gray. All data saves locally on this device — weights and notes persist between sessions.</div>`;
   scroll.appendChild(note);
-
   const safe = el('div', 'safe-bottom');
   scroll.appendChild(safe);
 }
-
-// ══════════════════════════════════
+// ============================================================
 // UTILS
-// ══════════════════════════════════
+// ============================================================
 function el(tag, className) {
   const e = document.createElement(tag);
   if (className) e.className = className;
   return e;
 }
-
-// ══════════════════════════════════
+// ============================================================
 // PROFILE SCREEN RENDER
-// ══════════════════════════════════
+// ============================================================
 function renderProfileScreen() {
   const p = loadProfile();
   const initials = p.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
-
   const titleEl = document.getElementById('profile-title-text');
   const subEl = document.getElementById('profile-sub-text');
   if (titleEl) titleEl.textContent = 'Profile';
   if (subEl) subEl.textContent = p.name;
-
   const scroll = document.getElementById('profile-scroll');
   if (!scroll) return;
-
   scroll.innerHTML = `
     <div class="profile-header">
       <div class="avatar">${initials}</div>
@@ -1808,7 +1678,6 @@ function renderProfileScreen() {
         <div class="profile-meta">${p.age} · Male · ${p.gym}</div>
       </div>
     </div>
-
     <div class="info-card">
       <div class="info-row"><span class="info-key">Height</span><span class="info-val">${p.height}</span></div>
       <div class="info-row"><span class="info-key">Weight</span><span class="info-val">${p.weight}</span></div>
@@ -1821,16 +1690,13 @@ function renderProfileScreen() {
       <div class="info-row"><span class="info-key">Sleep</span><span class="info-val">${p.sleep}</span></div>
       <div class="info-row"><span class="info-key">Stress</span><span class="info-val">${p.stress}</span></div>
     </div>
-
     <div class="coach-note">
       <div class="coach-label">Coach Note</div>
       <div class="coach-text">Kyler — you're 25, training at Gold's Gym at 5'6" and 140 lbs with one mission: build real muscle. This 8-week program runs two blocks — Weeks 1–4 build your foundation and groove the movements; Weeks 5–8 ramp up the intensity and push your limits. Progressive overload is baked in: when your top sets feel controlled, add weight. Sleep 7–9 hours, eat a caloric surplus, hit your protein. You have the gym, the time, and the program — the only thing left is to execute.</div>
     </div>
-
     <div class="safe-bottom"></div>
   `;
 }
-
 function populateSettingsForm() {
   const p = loadProfile();
   const fields = ['name','age','height','weight','gym','sleep'];
@@ -1841,56 +1707,47 @@ function populateSettingsForm() {
   const stress = document.getElementById('set-stress');
   if (stress) stress.value = p.stress || '';
 }
-
-// ══════════════════════════════════
+// ============================================================
 // INIT
-// ══════════════════════════════════
+// ============================================================
 buildWeekTabs();
 renderSchedule();
 renderProfileScreen();
-
-// ══════════════════════════════════
+// ============================================================
 // PWA INSTALL PROMPT
-// ══════════════════════════════════
+// ============================================================
 let deferredPrompt = null;
-
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
   showInstallBanner();
 });
-
 function showInstallBanner() {
   const existing = document.getElementById('install-banner');
   if (existing) return;
   const banner = document.createElement('div');
   banner.id = 'install-banner';
   banner.style.cssText = 'position:fixed;bottom:80px;left:12px;right:12px;background:#1a1a1a;border:1px solid rgba(204,0,0,0.4);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.6);';
-  banner.innerHTML = '<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#f0f0f0;margin-bottom:2px;">Add to Home Screen</div><div style="font-size:11px;color:#666;">Open like an app \u2014 no browser needed</div></div><button onclick="installApp()" style="background:#CC0000;color:#fff;border:none;border-radius:8px;font-family:DM Sans,sans-serif;font-size:13px;font-weight:500;padding:8px 14px;cursor:pointer;white-space:nowrap;">Add</button><button onclick="dismissBanner()" style="background:transparent;color:#555;border:none;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;">\xd7</button>';
+  banner.innerHTML = '<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#f0f0f0;margin-bottom:2px;">Add to Home Screen</div><div style="font-size:11px;color:#666;">Open like an app — no browser needed</div></div><button onclick="installApp()" style="background:#CC0000;color:#fff;border:none;border-radius:8px;font-family:DM Sans,sans-serif;font-size:13px;font-weight:500;padding:8px 14px;cursor:pointer;white-space:nowrap;">Add</button><button onclick="dismissBanner()" style="background:transparent;color:#555;border:none;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;">×</button>';
   document.body.appendChild(banner);
   setTimeout(() => dismissBanner(), 15000);
 }
-
 function installApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then(() => { deferredPrompt = null; dismissBanner(); });
   }
 }
-
 function dismissBanner() {
   const b = document.getElementById('install-banner');
   if (b) b.remove();
 }
-
 function isIOS() {
   return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.navigator.standalone;
 }
-
 function isStandalone() {
   return window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
 }
-
 if (isIOS() && !isStandalone()) {
   setTimeout(() => {
     const existing = document.getElementById('install-banner');
@@ -1898,12 +1755,11 @@ if (isIOS() && !isStandalone()) {
     const banner = document.createElement('div');
     banner.id = 'install-banner';
     banner.style.cssText = 'position:fixed;bottom:80px;left:12px;right:12px;background:#1a1a1a;border:1px solid rgba(204,0,0,0.4);border-radius:14px;padding:14px 16px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.6);';
-    banner.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-size:13px;font-weight:500;color:#f0f0f0;">Add to Home Screen</div><button onclick="dismissBanner()" style="background:transparent;color:#555;border:none;font-size:20px;cursor:pointer;padding:0;line-height:1;">\xd7</button></div><div style="font-size:12px;color:#888;line-height:1.6;">Tap <span style="color:#f0f0f0;">Share</span> \u238b at the bottom of Safari, then tap <span style="color:#f0f0f0;">"Add to Home Screen"</span>.</div><div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;font-size:11px;color:#555;">Opens full-screen. All your data saves locally.</div>';
+    banner.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-size:13px;font-weight:500;color:#f0f0f0;">Add to Home Screen</div><button onclick="dismissBanner()" style="background:transparent;color:#555;border:none;font-size:20px;cursor:pointer;padding:0;line-height:1;">×</button></div><div style="font-size:12px;color:#888;line-height:1.6;">Tap <span style="color:#f0f0f0;">Share</span> ⎋ at the bottom of Safari, then tap <span style="color:#f0f0f0;">"Add to Home Screen"</span>.</div><div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;font-size:11px;color:#555;">Opens full-screen. All your data saves locally.</div>';
     document.body.appendChild(banner);
     setTimeout(() => dismissBanner(), 18000);
   }, 1200);
 }
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swCode = `
@@ -1914,10 +1770,10 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promis
 self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).catch(()=>cached)));});
     `;
     const blob = new Blob([swCode], { type: 'application/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl);
-        });
-          }
-          </script>
-          </body>
-          </html>
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl);
+  });
+}
+</script>
+</body>
+</html>
