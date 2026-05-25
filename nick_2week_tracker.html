@@ -659,7 +659,6 @@
   .info-row:last-child { border-bottom: none; }
   .info-key { font-size: 13px; color: var(--text-muted); }
   .info-val { font-size: 13px; font-weight: 500; color: var(--text); }
-  /* Experience row — stacked layout for long value */
   .info-row-stacked {
     display: flex;
     flex-direction: column;
@@ -1146,12 +1145,12 @@ function buildProgram() {
         {
           label: 'Main Work',
           exercises: [
-            { name: 'Incline DB Press', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 3-1-1 tempo \u2014 go heavier than Block 1, controlled descent' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 3-0-1 tempo \u2014 DB all the way to chest, feel stretch at bottom of each rep', sets: 4 },
-            { name: 'Seated Cable Row (or DB Row)', prescription: isBlock2 ? '4 sets \u00B7 8-10 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight, full retraction, go heavier' : '4 sets \u00B7 12-15 reps \u00B7 90s rest \u00B7 2-1-2 tempo \u2014 elbows tight to body, full shoulder blade retraction', sets: 4 },
-            { name: 'Chest Fly', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 feel stretch at bottom, moderate load' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 3-0-1 tempo \u2014 slight bend in elbow, feel stretch at bottom of each rep', sets: 3 },
-            { name: 'Single Arm Cable Tricep Pulldowns (Alternating)', prescription: isBlock2 ? '3 sets \u00B7 8-10 reps ea \u00B7 60s rest \u00B7 supinate at top \u2014 heavier DBs' : '3 sets \u00B7 12-15 reps ea \u00B7 60s rest \u00B7 supinate wrist at top of each rep', sets: 3 },
-            { name: 'Cable Cross-Body Row', prescription: isBlock2 ? '3 sets \u00B7 10-12 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 hand across body, feel lat stretch, drive elbow to hip' : '3 sets \u00B7 12-15 reps \u00B7 75s rest \u00B7 2-1-2 tempo \u2014 lean slightly back, drive elbows down toward hips', sets: 3 },
-            { name: 'EZ-Bar Bicep Curls', prescription: isBlock2 ? '2 sets \u00B7 10-12 reps ea \u00B7 60s rest \u2014 neutral grip, controlled' : '2 sets \u00B7 15 reps ea \u00B7 60s rest \u00B7 neutral grip, slow down phase', sets: 2 },
+            { name: 'Incline DB Press', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 3-1-1 tempo — go heavier than Block 1, controlled descent' : '4 sets · 12-15 reps · 90s rest · 3-0-1 tempo — DB all the way to chest, feel stretch at bottom of each rep', sets: 4 },
+            { name: 'Seated Cable Row (or DB Row)', prescription: isBlock2 ? '4 sets · 8-10 reps · 90s rest · 2-1-2 tempo — elbows tight, full retraction, go heavier' : '4 sets · 12-15 reps · 90s rest · 2-1-2 tempo — elbows tight to body, full shoulder blade retraction', sets: 4 },
+            { name: 'Chest Fly', prescription: isBlock2 ? '3 sets · 8-10 reps · 75s rest · 3-0-1 tempo — feel stretch at bottom, moderate load' : '3 sets · 12-15 reps · 75s rest · 3-0-1 tempo — slight bend in elbow, feel stretch at bottom of each rep', sets: 3 },
+            { name: 'Single Arm Cable Tricep Pulldowns (Alternating)', prescription: isBlock2 ? '3 sets · 8-10 reps ea · 60s rest · supinate at top — heavier DBs' : '3 sets · 12-15 reps ea · 60s rest · supinate wrist at top of each rep', sets: 3 },
+            { name: 'Cable Cross-Body Row', prescription: isBlock2 ? '3 sets · 10-12 reps · 75s rest · 2-1-2 tempo — hand across body, feel lat stretch, drive elbow to hip' : '3 sets · 12-15 reps · 75s rest · 2-1-2 tempo — lean slightly back, drive elbows down toward hips', sets: 3 },
+            { name: 'EZ-Bar Bicep Curls', prescription: isBlock2 ? '2 sets · 10-12 reps ea · 60s rest — neutral grip, controlled' : '2 sets · 15 reps ea · 60s rest · neutral grip, slow down phase', sets: 2 },
           ]
         },
         {
@@ -1325,6 +1324,24 @@ function loadData(dayNum, exIdx, setIdx, field) {
   return stored[k] || '';
 }
 
+// ── NEW: Last Week Best Set ──
+function getLastWeekBestSet(currentDayNum, exIdx, sets) {
+  const lastWeekDayNum = currentDayNum - 6;
+  if (lastWeekDayNum < 1) return null;
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  let best = null;
+  for (let s = 0; s < sets; s++) {
+    const lbs = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_lbs`]);
+    const reps = parseFloat(stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_reps`]);
+    const done = stored[`d${lastWeekDayNum}_e${exIdx}_s${s}_done`] === '1';
+    if (!done || isNaN(lbs) || isNaN(reps)) continue;
+    if (!best || lbs > best.lbs || (lbs === best.lbs && reps > best.reps)) {
+      best = { lbs, reps };
+    }
+  }
+  return best;
+}
+
 function saveDayDone(dayNum, done) {
   const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   stored[`day${dayNum}_done`] = done;
@@ -1395,7 +1412,6 @@ function switchWeek(w) {
     if (tab) tab.classList.toggle('active', i === w);
   }
   renderSchedule();
-  // Scroll active tab into view
   const activeTab = document.getElementById('tab-w' + w);
   if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
@@ -1453,8 +1469,7 @@ function renderSchedule() {
 }
 
 function getTodayDayIdx() {
-  const dow = new Date().getDay(); // 0=Sun, 1=Mon...
-  // Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6, Sun=not shown
+  const dow = new Date().getDay();
   const posMap = {1:1, 2:2, 3:3, 4:4, 5:5, 6:6};
   const pos = posMap[dow];
   if (!pos) return -1;
@@ -1501,29 +1516,34 @@ function openWorkout(day) {
       const exCard = el('div', 'ex-card');
       const eIdx = globalExIdx;
 
-      let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div></div>`;
+      // ── PATCHED: isSimple declared first, then last-week lookup ──
+      const isSimple = /warm|recovery/i.test(section.label);
+      const lastBest = (!isSimple && ex.sets) ? getLastWeekBestSet(day.day, eIdx, ex.sets) : null;
+      const lastWeekLine = lastBest
+        ? `<div style="font-size:11px;color:var(--green);margin-top:3px;font-family:'DM Mono',monospace;">↑ Last week: ${lastBest.lbs} lbs × ${lastBest.reps} reps</div>`
+        : '';
+      let headerHTML = `<div><div class="ex-name">${ex.name}</div><div class="ex-prescription">${ex.prescription}</div>${lastWeekLine}</div>`;
       if (ex.pr) headerHTML += `<span class="pr-badge">PR Zone</span>`;
 
-              const isSimple = /warm|recovery/i.test(section.label);
-        let setsHTML = '';
-                if (!isSimple) {
-                          setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
-      for (let s = 0; s < ex.sets; s++) {
-        const savedLbs = loadData(day.day, eIdx, s, 'lbs');
-        const savedReps = loadData(day.day, eIdx, s, 'reps');
-        const savedDone = loadData(day.day, eIdx, s, 'done') === '1';
-        setsHTML += `<div class="set-row">
-          <span class="set-num">${s + 1}</span>
-          <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="lbs" value="${savedLbs}" onchange="onInput(${day.day},${eIdx},${s},'lbs',this.value)" oninput="onInput(${day.day},${eIdx},${s},'lbs',this.value)">
-          <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="reps" value="${savedReps}" onchange="onInput(${day.day},${eIdx},${s},'reps',this.value)" oninput="onInput(${day.day},${eIdx},${s},'reps',this.value)">
-          <button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-${s}" onclick="toggleSet(${day.day},${eIdx},${s},${totalSets})">✓</button>
-        </div>`;
+      let setsHTML = '';
+      if (!isSimple) {
+        setsHTML = `<div class="set-header"><span>Set</span><span>Lbs</span><span>Reps</span><span></span></div>`;
+        for (let s = 0; s < ex.sets; s++) {
+          const savedLbs = loadData(day.day, eIdx, s, 'lbs');
+          const savedReps = loadData(day.day, eIdx, s, 'reps');
+          const savedDone = loadData(day.day, eIdx, s, 'done') === '1';
+          setsHTML += `<div class="set-row">
+            <span class="set-num">${s + 1}</span>
+            <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="lbs" value="${savedLbs}" onchange="onInput(${day.day},${eIdx},${s},'lbs',this.value)" oninput="onInput(${day.day},${eIdx},${s},'lbs',this.value)">
+            <input class="set-input${savedDone ? ' saved' : ''}" type="number" inputmode="decimal" placeholder="reps" value="${savedReps}" onchange="onInput(${day.day},${eIdx},${s},'reps',this.value)" oninput="onInput(${day.day},${eIdx},${s},'reps',this.value)">
+            <button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-${s}" onclick="toggleSet(${day.day},${eIdx},${s},${totalSets})">✓</button>
+          </div>`;
+        }
       }
-    }
-            if (isSimple) {
-                      const savedDone = loadData(day.day, eIdx, 0, 'done') === '1';
-                                headerHTML += `<button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-0" onclick="toggleSet(${day.day},${eIdx},0,${totalSets})">✓</button>`;
-                                        }
+      if (isSimple) {
+        const savedDone = loadData(day.day, eIdx, 0, 'done') === '1';
+        headerHTML += `<button class="check-btn${savedDone ? ' done' : ''}" id="chk-${day.day}-${eIdx}-0" onclick="toggleSet(${day.day},${eIdx},0,${totalSets})">✓</button>`;
+      }
 
       exCard.innerHTML = `<div class="ex-header">${headerHTML}</div>${setsHTML}`;
       scroll.appendChild(exCard);
@@ -1708,7 +1728,6 @@ function renderProgress() {
   `;
   scroll.appendChild(grid);
 
-  // Week summaries — 8 weeks
   for (let w = 1; w <= 8; w++) {
     const weekCard = el('div', 'week-summary');
     const days = PROGRAM.filter(d => d.week === w);
@@ -1731,7 +1750,6 @@ function renderProgress() {
     scroll.appendChild(weekCard);
   }
 
-  // Supplement Recommendations link
   const suppLink = el('div', 'detail-link-card');
   suppLink.onclick = () => showTab('supplements');
   suppLink.innerHTML = `
@@ -1744,7 +1762,6 @@ function renderProgress() {
   `;
   scroll.appendChild(suppLink);
 
-  // Coaching Notes link
   const coachLink = el('div', 'detail-link-card');
   coachLink.onclick = () => showTab('coaching');
   coachLink.innerHTML = `
@@ -1903,10 +1920,10 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promis
 self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).catch(()=>cached)));});
     `;
     const blob = new Blob([swCode], { type: 'application/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl);
-        });
-          }
-          </script>
-          </body>
-          </html>
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl);
+  });
+}
+</script>
+</body>
+</html>
