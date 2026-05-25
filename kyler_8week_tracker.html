@@ -1465,7 +1465,7 @@ function openWorkout(day) {
       const eIdx = globalExIdx;
 
       // ── FIXED ORDER: isSimple first, then lastBest, then headerHTML ──
-      const isSimple = /warm|recovery/i.test(section.label);
+      const isSimple = /warm|recovery|cool/i.test(section.label);
       const lastBest = (!isSimple && ex.sets) ? getLastWeekBestSet(day.day, eIdx, ex.sets) : null;
       const lastWeekLine = lastBest
         ? `<div style="font-size:11px;color:var(--green);margin-top:3px;font-family:'DM Mono',monospace;">↑ Last week: ${lastBest.lbs} lbs × ${lastBest.reps} reps</div>`
@@ -1736,7 +1736,7 @@ function renderProfileScreen() {
     </div>
     <div class="coach-note">
       <div class="coach-label">Coach Note</div>
-      <div class="coach-text">Kyler — you're 25, training at Gold's Gym at 5'6" and 140 lbs with one mission: build real muscle. This 8-week program runs two blocks — Weeks 1–4 build your foundation and groove the movements; Weeks 5–8 ramp up the intensity and push your limits. Progressive overload is baked in: when your top sets feel controlled, add weight. Sleep 7–9 hours, eat a caloric surplus, hit your protein. You have the gym, the time, and the program — the only thing left is to execute.</div>
+      <div class="coach-text">Kyler — you're 22, training at Gold's Gym at 5'8" and 150 lbs with one mission: build real muscle. This 8-week program runs two blocks — Weeks 1–4 build your foundation and groove the movements; Weeks 5–8 ramp up the intensity and push your limits. Progressive overload is baked in: when your top sets feel controlled, add weight. Sleep 7–9 hours, eat a caloric surplus, hit your protein. You have the gym, the time, and the program — the only thing left is to execute.</div>
     </div>
     <div class="safe-bottom"></div>
   `;
